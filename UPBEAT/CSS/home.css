@@ -1,0 +1,203 @@
+@font-face
+{
+     font-family: ARMTB;
+     src: url('../FONTS/ARMTB.ttf');
+}
+
+body
+{
+	margin: 0%;
+	padding: 0%;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	background-color: #b8b4b4;
+}
+
+#header
+{
+	top: 5%;
+	width: 100%;
+	height: 50px;
+	position: absolute;
+	background-color: brown;
+}
+
+#label
+{
+	width: 20%;
+	height: 100%;
+	margin-top: 0%;
+	position: absolute;
+	background-size: 100% 100%;
+	background-image: url('../IMAGES/banner.png');
+}
+
+ul#menu
+{
+	top: 5%;
+	left: 20%;
+	width: 80%;
+	padding: 0%;
+	color: white;
+	font-size: 16px;
+	overflow: hidden;
+	font-family: ARMTB;
+	position: absolute;
+}
+
+ul#menu li
+{
+	width: 19%;
+	float: left;
+	height: 100%;
+	list-style: none;
+	text-align: center;
+	position: relative;
+	border-left: 2px solid white;
+}
+
+ul#menu li:hover
+{
+	color: gray;
+}
+
+#sid
+{
+	margin: 0%;
+	font-size: 14px;
+	font-family: ARMTB;
+}
+
+ul#menu li#slist
+{
+	border: 0px;
+}
+
+
+a.links
+{
+	color: white;
+	font-weight: normal;
+	text-decoration: none;
+}
+
+a.links:hover
+{
+	color: gray;
+}
+
+#left
+{
+	width: 50%;
+	height: 100%;
+	opacity: 1;
+	margin-left: -50%;
+	position: absolute;
+	background-color: black;
+}
+
+#right
+{
+	width: 50%;
+	height: 100%;
+	opacity: 1;
+	margin-left: 100%;
+	position: absolute;
+	background-color: black;
+}
+
+#collection
+{
+	top: 5%;
+	width: 100%;
+	color: white;
+	padding-top: 50px;
+	padding-left: 36%;
+	position: absolute;
+}
+
+#collection li, #login li
+{
+	margin: 0%;
+	width: 15%;
+	padding-top: 10px;
+	height: 25px;
+	font-size: 14px;
+	list-style: none;
+	text-align: center;
+	font-family: ARMTB;
+	position: relative;
+	background-size: 100% 100%;
+	background-image: url('../Images/list.png');
+}
+
+#login
+{
+	top: 5%;
+	width: 100%;
+	padding-top: 50px;
+	padding-left: 45%;
+	position: absolute;
+}
+
+#login li
+{
+	margin: 0%;
+	width: 28%;
+	color: white;
+	padding-top: 10px;
+	height: 25px;
+	font-size: 14px;
+	list-style: none;
+	text-align: center;
+	font-family: ARMTB;
+	position: relative;
+	background-size: 100% 100%;
+	background-image: url('../Images/list.png');
+}
+
+#flash
+{
+	margin-top: 20%;
+	margin-left: 20%;
+	padding: 0%;
+	width: 60%;
+	height: 60%;
+	opacity: 0;
+	position: absolute;
+	border-radius: 15px;
+	background-color: white;
+	box-shadow: 5px 5px 5px 0px gray;
+}
+
+.input
+{
+	width: 44%;
+	margin: 0%;
+	color: white;
+	font-size: 14px;
+	font-family: ARMTB;
+	border-top: 0px;
+	border-left: 0px;
+	border-right: 0px;
+	border-bottom: 1px solid white;
+	background-color: transparent;
+}
+
+#logbut
+{
+	margin: 0%;
+	font-size: 14px;
+	font-family: ARMTB;
+}
+
+#content
+{
+	margin-top: 20%;
+	margin-left: 10%;
+	width: 80%;
+	height: 80%;
+	position: absolute;
+	background-color: white;
+}
