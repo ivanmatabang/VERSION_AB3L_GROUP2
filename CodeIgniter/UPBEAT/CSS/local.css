@@ -1,0 +1,42 @@
+@font-face		{ font-family: ARMTB; src: url('../FONTS/ARMTB.ttf'); }
+
+body 			{ margin: 0%; padding: 0%; width: 100%; height: 100%; overflow: hidden; background-color: white;}
+table#log			{ text-align: right; color: white;}
+table#up			{ text-align: center; color: black;}
+#header 			{ top: 5%; width: 100%; height: 50px; position: absolute; background-color: brown;}
+#label 			{ width: 20%; height: 100%; margin: 0%; position: absolute; background-size: 100% 100%; background-image: url('../IMAGES/banner.png');}
+ul#menu 			{ top: 5%; left: 20%; padding: 0%; width: 80%; color: white; font-size: 16px; font-family: ARMTB; position: absolute;}
+ul#menu li 		{ width: 19%; float: left; height: 100%; list-style: none; text-align: center; position: relative; border-left: 2px solid white;}
+ul#menu li:hover 	{ color: gray;}
+ul#menu li#slist	{ border: 0px;}
+#sinput 			{ margin: 0%; font-size: 14px; color: gray; font-family: ARMTB;}
+a.links 			{ color: white; font-weight: normal; text-decoration: none;}
+a.links:hover 		{ color: gray;}
+#main 			{ margin-top: 20%; width: 100%; height: 80%; position: absolute; font-size: 30px; text-align: center;}
+#cover1			{ margin-top: 21%; width: 100%; height: 65%; opacity: 0.1; background-color: black; position: absolute;}
+#cover2			{ margin-top: 21%; width: 100%; height: 65%; opacity: 0.1; background-color: black; position: absolute;}
+#content 			{ margin-top: 2%; margin-left: 1%; width: 98%; height: 96%; border-radius: 10px; background-color: white; position: absolute;}
+#enter			{ margin-top: 90%; width: 100%; height: 10%; text-align: center; position: absolute;}
+#ebutton			{ width: 20%; font-size: 16px; font-family: ARMTB; color: brown;}
+#ebutton:hover		{ background-color: black;}
+#logcontent		{ margin-top: 5%; padding-top: 50px; width: 100%; height: 95%; color: white; opacity: 0.9; background-color: black; position: absolute;}
+#logleft			{ width: 50%; height: 20%; text-align: center; border-bottom: 2px solid white; color: white; background-color: rgb(50,21,7); position: absolute;}
+#logright			{ margin-left: 50%; width: 50%; height: 20%; text-align: center; border-bottom: 2px solid white; background-color: rgb(50,21,7); position: absolute;}
+#upper			{ margin: 0%; width: 100%; height: 5%; background-color: white; position: absolute;}
+#colcontent		{ margin-top: 5%; padding-top: 50px; width: 100%; height: 95%; color: white; opacity: 0.9; background-color: black; position: absolute;}
+ul#category		{ margin: 0%; padding: 0%; width: 100%; height: 20%; text-align: center; border-bottom: 2px solid white; color: white; background-color: rgb(50,21,7); position: absolute;}
+ul#category li 	{ margin: 0%; opacity: 0; float: left; width: 25%; position: relative; height: 100%; text-align: center;}
+ul#category li#cat1	{ width: 25%; height: 100%; background-size: 100% 100%; background-image: url('../IMAGES/shirts.jpg');}
+ul#category li#cat2	{ width: 25%; height: 100%; background-size: 100% 100%; background-image: url('../IMAGES/jackets.jpg');}
+ul#category li#cat3	{ width: 25%; height: 100%; background-size: 100% 100%; background-image: url('../IMAGES/others.jpg');}
+ul#category li#cat4	{ width: 25%; height: 100%; background-size: 100% 100%; background-image: url('../IMAGES/shirts.jpg');}
+#left 			{ margin-left: -50%; width: 50%; height: 100%; position: absolute; background-size: 100% 100%; background-image: url('../IMAGES/left.jpg');}
+#right 			{ margin-left: 100%; width: 50%; height: 100%; position: absolute; background-size: 100% 100%; background-image: url('../IMAGES/right.jpg');}
+#flash			{ margin: 20%; border-radius: 15px; width: 60%; height: 60%; opacity: 0; background-color: black; position: absolute; box-shadow: 0px 0px 10px 0px white;}
+#sign			{ margin: 20%; border-radius: 15px; width: 60%; height: 60%; background-color: black; position: absolute; box-shadow: 0px 0px 10px 0px white;}
+#signform			{ margin-top: 2%; margin-left: 1%; width: 98%; height: 96%; border-radius: 10px; background-color: white; position: absolute;}
+#shelf			{ margin: 0%; padding: 0%; width: 100%; height: 100%; position: absolute;}
+
+table#ac			{ text-align: center; color: black;}
+#account			{ margin: 20%; border-radius: 15px; width: 60%; height: 60%; background-color: black; position: absolute; box-shadow: 0px 0px 10px 0px white;}
+#accountform			{ margin-top: 2%; margin-left: 1%; width: 98%; height: 96%; border-radius: 10px; background-color: white; position: absolute;}
