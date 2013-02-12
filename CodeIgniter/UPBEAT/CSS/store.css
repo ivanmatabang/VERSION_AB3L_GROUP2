@@ -21,8 +21,7 @@ ul#category li 		{margin: 0%; list-style: none; padding-top: 2%; text-align: cen
 #upcontent			{margin-top: 2%; margin-left: 1%; width: 98%; height: 96%; text-align: center; background-color: white; position: absolute;}
 table#up				{text-align: right; font-size: 14px; font-family: arial;}
 td					{border: 0px solid black; width: 25%;}
-#mainbody				{margin-top: 25%; margin-left: 1%; width: 65%; height: 72%; background-size: 100% 150%; background-image: url("../IMAGES/up.jpg"); position: absolute;}
-#news				{margin-left: 67%; margin-top: 25%; padding: 1%; text-align: justify; box-shadow: 0px 5px 5px 0px; border-radius: 5px; width: 30%; height: 67%; font-size: 16px; font-family: arial; overflow: auto; background-color: white; position: absolute;}
+#mainbody				{margin-top: 25%; margin-left: 1%; font-size: 18; font-family: arial; width: 98%; height: 73%; background-color: white; position: absolute;}
 #mens				{margin-left: 25%; margin-top: 25%; width: 75%; height: 50%; background-color: green; position: absolute;}
 #mshirt				{margin: 0%; padding: 0%; width: 50%; height: 100%; background-size: 100% 100%; background-image: url("../IMAGES/shirts.jpg"); position: absolute;}
 #mjackets				{margin-left: 50%; padding: 0%; width: 50%; height: 100%; background-size: 100% 100%; background-image: url("../IMAGES/jackets.jpg"); position: absolute;}
@@ -30,21 +29,23 @@ td					{border: 0px solid black; width: 25%;}
 ul#options li:hover		{background-color: black;}
 ul#category li:hover	{color: white; background-color: black;}
 input[type="submit"]	{background-color: rgb(102,0,0); color: white; border-color: black; font-size: 14px; font-family: ARMTB;}
-#menbox				{z-index: 10; opacity: 0; margin-top: 25%; margin-left: 25%; box-shadow: 0px 5px 5px 0px black; width: 37.5%; height: 30%; background-color: gray; position: absolute;}
+#menbox				{opacity: 0; margin-top: 25%; margin-left: 25%; box-shadow: 0px 5px 5px 0px black; width: 37.5%; height: 30%; background-color: gray; position: absolute;}
 #msthumb 				{margin: 0%; width: 49.5%; height: 100%; border-right: 2px dotted black; position: absolute;}
 #msthumbox			{opacity: 0; background-color: white; margin: 5%; width: 90%; height: 90%; background-size: 100% 100%; background-image: url("../IMAGES/shirts.png"); position: absolute;}
 #mjthumb	 			{margin-left: 50%; width: 50%; height: 100%; position: absolute;}
 #mjthumbox			{opacity: 0; background-color: white; margin: 5%; width: 90%; height: 90%; background-size: 100% 100%; background-image: url("../IMAGES/jackets.jpg"); position: absolute;}
 .slabel				{margin-top: 70%; width: 100%; height: 30%; background-size: 100% 100%; background-image: url("../IMAGES/slabel.png"); position: absolute;}
 .jlabel				{margin-top: 70%; width: 100%; height: 30%; background-size: 100% 100%; background-image: url("../IMAGES/jlabel.png"); position: absolute;}
-#womenbox				{z-index: 10;opacity: 0; margin-top: 25%; margin-left: 62.5%; box-shadow: 0px 5px 5px 0px black; width: 37.5%; height: 30%; background-color: gray; position: absolute;}
+#womenbox				{opacity: 0; margin-top: 25%; margin-left: 62.5%; box-shadow: 0px 5px 5px 0px black; width: 37.5%; height: 30%; background-color: gray; position: absolute;}
 #wsthumb 				{margin: 0%; width: 49.5%; height: 100%; border-right: 2px dotted black; position: absolute;}
 #wsthumbox			{opacity: 0; background-color: white; margin: 5%; width: 90%; height: 90%; background-size: 100% 100%; background-image: url("../IMAGES/shirts.png"); position: absolute;}
 #wjthumb	 			{margin-left: 50%; width: 50%; height: 100%; position: absolute;}
 #wjthumbox			{opacity: 0; background-color: white; margin: 5%; width: 90%; height: 90%; background-size: 100% 100%; background-image: url("../IMAGES/jackets.jpg"); position: absolute;}
 a.links				{text-decoration: none; color: white;}
+ul#products			{margin-left: 1%; margin-top: 2%; padding: 0%; width: 98%; height: 96%; background-color: yellow; overflow: auto; position: absolute;}
+ul#products li 		{margin: 4px; color: white; padding: 0%; float: left; list-style: none; width: 24%; height: 250px; background-color: black; position: relative;}
 
-::-webkit-scrollbar						{width: 3%;}
+::-webkit-scrollbar						{width: 1%;}
 ::-webkit-scrollbar-track				{-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); -webkit-border-radius: 20px; border-radius: 10px;}
 ::-webkit-scrollbar-thumb 				{-webkit-border-radius: 10px; border-radius: 10px; background: brown; -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);}
 ::-webkit-scrollbar-thumb:window-inactive 	{background: rgba(255,0,0,0.4);}
