@@ -1,51 +1,7 @@
-@font-face			{font-family: arial; src: url('../FONTS/arial.ttf');}
-@font-face			{font-family: ARMTB; src: url('../FONTS/ARMTB.ttf');}
-@font-face			{font-family: wallstreet; src: url('../FONTS/wallstreet.ttf');}
-
-body					{margin: 0%; padding: 0%; width: 100%; height: 100%; overflow: hidden; background-size: 100% 100%; background-image: url("../IMAGES/background.jpg");}
-#topmost				{margin: 0%; padding: 0%; width: 100%; height: 25%; position: absolute;}
-#logo				{margin: 0%; padding: 0%; width: 25%; height: 100%; background-size: 100% 100%; background-image: url("../IMAGES/logo.png"); position: absolute;}
-#account				{margin-top: 5%; margin-left: 25%; padding: 0%; width: 75%; height: 15%; text-align: right; position: absolute;}
-#acctext				{padding-right: 2%; font-family: arial; font-size: 14px; color: black;}
-#menu				{margin-top: 20%; margin-left: 25%; padding: 0%; width: 75%; height: 39%; box-shadow: 5px 0px 0px 0px white; position: absolute;}
-ul#options			{margin: 0%; padding: 0%; width: 100%; height: 100%; font-family: ARMTB; position: absolute;}
-ul#options li 			{margin: 0%; list-style: none; padding-top: 2%; float: left; width: 20%; height: 65%; box-shadow: 0px 5px 5px 0px black; font-size: 18px; color: white; text-align: center; background-color: rgb(120,10,0); position: relative;}
-ul#category			{margin-left: 25%; margin-top: 20%; padding: 0%; width: 75%; height: 39%; font-family: ARMTB; font-size: 20px; background-color: gray; position: absolute;}
-ul#category li 		{margin: 0%; list-style: none; padding-top: 2%; text-align: center; width: 50%; height: 65%; float: left; box-shadow: 0px 5px 5px 0px black; position: relative;}
-#login				{margin-left: 25%; margin-top: 20%; padding: 0%; width: 75%; height: 39%; box-shadow: 0px 5px 5px 0px black; text-align: center; font-family: ARMTB; font-size: 14px; background-color: gray; position: absolute;}
-#create				{margin: 0%; padding-top: 2%; width: 30%; height: 69%; position: absolute;}
-#namediv				{margin-left: 30%; padding-top: 2%; width: 28%; height: 69%; position: absolute;}
-#passdiv				{margin-left: 58%; padding-top: 2%; width: 28%; height: 69%; position: absolute;}
-#button				{margin-left: 86%; padding-top: 2%; width: 14%; height: 69%; position: absolute;}
-#upcontain			{opacity: 0; margin-left: 25%; margin-top: 25%; width: 75%; height: 50%; background-color: black; position: absolute; box-shadow: 0px 0px 10px 0px white;}
-#upcontent			{margin-top: 2%; margin-left: 1%; width: 98%; height: 96%; text-align: center; background-color: white; position: absolute;}
-table#up				{text-align: right; font-size: 14px; font-family: arial;}
-td					{border: 0px solid black; width: 25%;}
-#mainbody				{margin-top: 25%; margin-left: 1%; font-size: 18; font-family: arial; width: 98%; height: 73%; background-color: white; position: absolute;}
-#mens				{margin-left: 25%; margin-top: 25%; width: 75%; height: 50%; background-color: green; position: absolute;}
-#mshirt				{margin: 0%; padding: 0%; width: 50%; height: 100%; background-size: 100% 100%; background-image: url("../IMAGES/shirts.jpg"); position: absolute;}
-#mjackets				{margin-left: 50%; padding: 0%; width: 50%; height: 100%; background-size: 100% 100%; background-image: url("../IMAGES/jackets.jpg"); position: absolute;}
-#checker				{margin-left: 25%; margin-top: 60%; padding-top: 2%; width: 75%; box-shadow: 0px 5px 5px 0px black; text-align: center; font-family: ARMTB; font-size: 16px; height: 21%; background-color: gray; position: absolute;}
-ul#options li:hover		{background-color: black;}
-ul#category li:hover	{color: white; background-color: black;}
-input[type="submit"]	{background-color: rgb(102,0,0); color: white; border-color: black; font-size: 14px; font-family: ARMTB;}
-#menbox				{opacity: 0; margin-top: 25%; margin-left: 25%; box-shadow: 0px 5px 5px 0px black; width: 37.5%; height: 30%; background-color: gray; position: absolute;}
-#msthumb 				{margin: 0%; width: 49.5%; height: 100%; border-right: 2px dotted black; position: absolute;}
-#msthumbox			{opacity: 0; background-color: white; margin: 5%; width: 90%; height: 90%; background-size: 100% 100%; background-image: url("../IMAGES/shirts.png"); position: absolute;}
-#mjthumb	 			{margin-left: 50%; width: 50%; height: 100%; position: absolute;}
-#mjthumbox			{opacity: 0; background-color: white; margin: 5%; width: 90%; height: 90%; background-size: 100% 100%; background-image: url("../IMAGES/jackets.jpg"); position: absolute;}
-.slabel				{margin-top: 70%; width: 100%; height: 30%; background-size: 100% 100%; background-image: url("../IMAGES/slabel.png"); position: absolute;}
-.jlabel				{margin-top: 70%; width: 100%; height: 30%; background-size: 100% 100%; background-image: url("../IMAGES/jlabel.png"); position: absolute;}
-#womenbox				{opacity: 0; margin-top: 25%; margin-left: 62.5%; box-shadow: 0px 5px 5px 0px black; width: 37.5%; height: 30%; background-color: gray; position: absolute;}
-#wsthumb 				{margin: 0%; width: 49.5%; height: 100%; border-right: 2px dotted black; position: absolute;}
-#wsthumbox			{opacity: 0; background-color: white; margin: 5%; width: 90%; height: 90%; background-size: 100% 100%; background-image: url("../IMAGES/shirts.png"); position: absolute;}
-#wjthumb	 			{margin-left: 50%; width: 50%; height: 100%; position: absolute;}
-#wjthumbox			{opacity: 0; background-color: white; margin: 5%; width: 90%; height: 90%; background-size: 100% 100%; background-image: url("../IMAGES/jackets.jpg"); position: absolute;}
-a.links				{text-decoration: none; color: white;}
-ul#products			{margin-left: 1%; margin-top: 2%; padding: 0%; width: 98%; height: 96%; background-color: yellow; overflow: auto; position: absolute;}
-ul#products li 		{margin: 4px; color: white; padding: 0%; float: left; list-style: none; width: 24%; height: 250px; background-color: black; position: relative;}
-
-::-webkit-scrollbar						{width: 1%;}
-::-webkit-scrollbar-track				{-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); -webkit-border-radius: 20px; border-radius: 10px;}
-::-webkit-scrollbar-thumb 				{-webkit-border-radius: 10px; border-radius: 10px; background: brown; -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);}
-::-webkit-scrollbar-thumb:window-inactive 	{background: rgba(255,0,0,0.4);}
+ul#container		{margin-top: 10px; margin-left: 3%; padding: 0%; width: 94%; background-color: blue;}
+ul#container li 	{margin: 2px; padding: 0%; float: left; width: 24%; height: 285px; border: 2px solid black; list-style: none;}
+img 				{width: 100%; height: 100%;}
+.picture 			{margin: 0%; padding: 0%; float: left; width: 100%; height: 248px; border-bottom: 2px solid black;}
+.price			{margin: 0%; padding-top: 5px; float: left; width: 100%; height: 30px; text-align: center; font-size: 12px; font-family: arial;}
+input[type=submit]	{width: 45%; background-color: rgb(152,0,0); border-color: black; color: white; font-size: 12px; font-family: arial;}
+input[type=text] 	{width: 45%; border-color: black;}

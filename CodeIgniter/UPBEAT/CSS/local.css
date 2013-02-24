@@ -1,50 +1,17 @@
 @font-face			{font-family: arial; src: url('../FONTS/arial.ttf');}
 @font-face			{font-family: ARMTB; src: url('../FONTS/ARMTB.ttf');}
-@font-face			{font-family: wallstreet; src: url('../FONTS/wallstreet.ttf');}
 
-body					{margin: 0%; padding: 0%; width: 100%; height: 100%; overflow: hidden; background-size: 100% 100%; background-image: url("../IMAGES/background.jpg");}
-#topmost				{margin: 0%; padding: 0%; width: 100%; height: 25%; position: absolute;}
-#logo				{margin: 0%; padding: 0%; width: 25%; height: 100%; background-size: 100% 100%; background-image: url("../IMAGES/logo.png"); position: absolute;}
-#account				{margin-top: 5%; margin-left: 25%; padding: 0%; width: 75%; height: 15%; text-align: right; position: absolute;}
-#acctext				{padding-right: 2%; font-family: arial; font-size: 14px; color: black;}
-#menu				{margin-top: 20%; margin-left: 25%; padding: 0%; width: 75%; height: 39%; box-shadow: 5px 0px 0px 0px white; position: absolute;}
-ul#options			{margin: 0%; padding: 0%; width: 100%; height: 100%; font-family: ARMTB; position: absolute;}
-ul#options li 			{margin: 0%; list-style: none; padding-top: 2%; float: left; width: 20%; height: 65%; box-shadow: 0px 5px 5px 0px black; font-size: 18px; color: white; text-align: center; background-color: rgb(120,10,0); position: relative;}
-ul#category			{margin-left: 25%; margin-top: 20%; padding: 0%; width: 75%; height: 39%; font-family: ARMTB; font-size: 20px; background-color: gray; position: absolute;}
-ul#category li 		{margin: 0%; list-style: none; padding-top: 2%; text-align: center; width: 50%; height: 65%; float: left; box-shadow: 0px 5px 5px 0px black; position: relative;}
-#login				{margin-left: 25%; margin-top: 20%; padding: 0%; width: 75%; height: 39%; box-shadow: 0px 5px 5px 0px black; text-align: center; font-family: ARMTB; font-size: 14px; background-color: gray; position: absolute;}
-#create				{margin: 0%; padding-top: 2%; width: 30%; height: 69%; position: absolute;}
-#namediv				{margin-left: 30%; padding-top: 2%; width: 28%; height: 69%; position: absolute;}
-#passdiv				{margin-left: 58%; padding-top: 2%; width: 28%; height: 69%; position: absolute;}
-#button				{margin-left: 86%; padding-top: 2%; width: 14%; height: 69%; position: absolute;}
-#upcontain			{opacity: 0; margin-left: 25%; margin-top: 25%; width: 75%; height: 50%; background-color: black; position: absolute; box-shadow: 0px 0px 10px 0px white;}
-#upcontent			{margin-top: 2%; margin-left: 1%; width: 98%; height: 96%; text-align: center; background-color: white; position: absolute;}
-table#up				{text-align: right; font-size: 14px; font-family: arial;}
-td					{border: 0px solid black; width: 25%;}
-#mainbody				{margin-top: 25%; margin-left: 1%; width: 65%; height: 72%; background-size: 100% 150%; background-image: url("../IMAGES/up.jpg"); position: absolute;}
-#news				{margin-left: 67%; margin-top: 25%; padding: 1%; text-align: justify; box-shadow: 0px 5px 5px 0px; border-radius: 5px; width: 30%; height: 67%; font-size: 16px; font-family: arial; overflow: auto; background-color: white; position: absolute;}
-#mens				{margin-left: 25%; margin-top: 25%; width: 75%; height: 50%; background-color: green; position: absolute;}
-#mshirt				{margin: 0%; padding: 0%; width: 50%; height: 100%; background-size: 100% 100%; background-image: url("../IMAGES/shirts.jpg"); position: absolute;}
-#mjackets				{margin-left: 50%; padding: 0%; width: 50%; height: 100%; background-size: 100% 100%; background-image: url("../IMAGES/jackets.jpg"); position: absolute;}
-#checker				{margin-left: 25%; margin-top: 60%; padding-top: 2%; width: 75%; box-shadow: 0px 5px 5px 0px black; text-align: center; font-family: ARMTB; font-size: 16px; height: 21%; background-color: gray; position: absolute;}
-ul#options li:hover		{background-color: black;}
-ul#category li:hover	{color: white; background-color: black;}
-input[type="submit"]	{background-color: rgb(102,0,0); color: white; border-color: black; font-size: 14px; font-family: ARMTB;}
-#menbox				{z-index: 10; opacity: 0; margin-top: 25%; margin-left: 25%; box-shadow: 0px 5px 5px 0px black; width: 37.5%; height: 30%; background-color: gray; position: absolute;}
-#msthumb 				{margin: 0%; width: 49.5%; height: 100%; border-right: 2px dotted black; position: absolute;}
-#msthumbox			{opacity: 0; background-color: white; margin: 5%; width: 90%; height: 90%; background-size: 100% 100%; background-image: url("../IMAGES/shirts.png"); position: absolute;}
-#mjthumb	 			{margin-left: 50%; width: 50%; height: 100%; position: absolute;}
-#mjthumbox			{opacity: 0; background-color: white; margin: 5%; width: 90%; height: 90%; background-size: 100% 100%; background-image: url("../IMAGES/jackets.jpg"); position: absolute;}
-.slabel				{margin-top: 70%; width: 100%; height: 30%; background-size: 100% 100%; background-image: url("../IMAGES/slabel.png"); position: absolute;}
-.jlabel				{margin-top: 70%; width: 100%; height: 30%; background-size: 100% 100%; background-image: url("../IMAGES/jlabel.png"); position: absolute;}
-#womenbox				{z-index: 10;opacity: 0; margin-top: 25%; margin-left: 62.5%; box-shadow: 0px 5px 5px 0px black; width: 37.5%; height: 30%; background-color: gray; position: absolute;}
-#wsthumb 				{margin: 0%; width: 49.5%; height: 100%; border-right: 2px dotted black; position: absolute;}
-#wsthumbox			{opacity: 0; background-color: white; margin: 5%; width: 90%; height: 90%; background-size: 100% 100%; background-image: url("../IMAGES/shirts.png"); position: absolute;}
-#wjthumb	 			{margin-left: 50%; width: 50%; height: 100%; position: absolute;}
-#wjthumbox			{opacity: 0; background-color: white; margin: 5%; width: 90%; height: 90%; background-size: 100% 100%; background-image: url("../IMAGES/jackets.jpg"); position: absolute;}
-a.links				{text-decoration: none; color: white;}
-
-::-webkit-scrollbar						{width: 3%;}
-::-webkit-scrollbar-track				{-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); -webkit-border-radius: 20px; border-radius: 10px;}
-::-webkit-scrollbar-thumb 				{-webkit-border-radius: 10px; border-radius: 10px; background: brown; -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);}
-::-webkit-scrollbar-thumb:window-inactive 	{background: rgba(255,0,0,0.4);}
+body				{margin: 0%; padding: 0%; width: 100%; overflow: auto; background-color: white;}
+#header			{margin: 0%; width: 100%; padding: 0%; height: 125px; font-family: arial; font-size: 14px;}
+#logo			{margin: 0%; padding: 0%; float: left; width: 20%; height: 100%; background-size: 100% 100%; background-image: url("../IMAGES/logo.png");}
+#accheader		{margin-top: 15px; padding-right: 1%; float: left; width: 79%; height: 25px; text-align: right;}
+#menuheader		{margin: 0%; float: left; width: 80%; height: 50px; background-color: rgb(102,0,0);}
+ul#menu 			{margin: 0%; padding: 0%; width: 100%; height: 100%; text-align: center; color: white; font-size: 18px; font-family: ARMTB;}
+ul#menu li		{margin: 0%; padding: 0%; float: left; padding-top: 15px; width: 20%; height: 35px; list-style: none; box-shadow: 0px 5px 5px 0px black;}
+ul#menu li:hover	{background-color: black;}
+#catheader		{margin: 0%; padding-top: 10px; float: left; width: 80%; height: 20px;}
+.link			{color: white; list-style: none;}
+#footer			{margin-top: 10px; padding-top: 5px; float: left; font-size: 12px; font-family: arial; width: 100%; text-align: center;}
+#searchline		{width: 90%; margin-left: 5%; padding: 0%; text-align: center; font-size: 14px; background-color: red; height: 25px;}
+#boxsize		{width: 80%; height: 100%; float: left; margin: 0%; padding: 0%; background-color: green;}
+#srchbutton	{width: 20%; height: 100%; float: left; margin: 0%; padding: 0%; background-color: red;}

@@ -1,278 +1,327 @@
-<?php 
+<?php
+	session_start();
 
+	$username = "root";
+	$password = "";
+	$hostname = "localhost"; 
+	$result_num =0;
+	$result_array = array();	
+	$con = mysql_connect($hostname, $username, $password);
+			
+	if (!$con)
+	{
+		die('Could not connect: ' . mysql_error());
+	}
+
+	$db = mysql_select_db("upbeat", $con);
+	if (!$db)
+	{
+	 	die('Could not connect: ' . mysql_error());
+	}
+
+
+	if(isset($_POST['sbox']) || isset($_POST['searchbox']))
+	{
+		
+			
+		$product_array = array();
+		$product = $_POST['searchbox'];
+		$word_num = 0;
+		$result_num = 0;
+
+		$token = strtok($product, " ");
+
+		while ($token != false)
+	 	{
+	 		//echo $token;
+	 		array_push($product_array, $token);
+		  	$word_num++;
+	 		$token = strtok(" ");
+	 	} 
+
+		if(isset($_POST['submit_filter']))
+		{
+			if($_POST['filtermin'] != NULL && $_POST['filtermax'] != NULL)
+			{	
+				$result = mysql_query("SELECT * from product where price>=".$_POST['filtermin']." AND price<=".$_POST['filtermax']);
+			}
+			else if($_POST['filtermin'] != NULL)
+			{
+				$result = mysql_query("SELECT * from product where price>=".$_POST['filtermin']);
+			}
+			else
+			{
+				$result = mysql_query("SELECT * from product where price<=".$_POST['filtermax']);
+			}
+		}
+		else
+		{
+			$result = mysql_query("SELECT * from product");
+		}
+		while ($row = mysql_fetch_array($result, MYSQL_NUM))
+		{
+			$result2 = mysql_query("SELECT * from product_key where prod_id=".$row[0]);
+			while ($row2 = mysql_fetch_array($result2, MYSQL_NUM))
+			{
+				for($j=0; $j<$word_num; $j++)
+			 	{
+			 		if(strcmp(strtolower($product_array[$j]), strtolower($row2[1])) == 0)
+			 		{
+			 			//echo $row2[0];
+			 			array_push($result_array, $row2[0]);
+			 			$result_num++;
+			 			break;
+			 		}
+			 	}
+			}
+		}
+		mysql_free_result($result);
+
+
+
+				
+	}
+	else if(isset($_GET['stype']) && isset($_GET['gtype']))
+	{
+		if(isset($_POST['submit_filter']))
+		{
+			if($_POST['filtermin'] != NULL && $_POST['filtermax'] != NULL)
+			{
+				$result = mysql_query("SELECT * from product where shirt_type='".$_GET['stype']."' AND gender_type='".$_GET['gtype']."' AND price>=".$_POST['filtermin']." AND price<=".$_POST['filtermax']);
+			}
+			else if($_POST['filtermin'] != NULL)
+			{
+				$result = mysql_query("SELECT * from product where shirt_type='".$_GET['stype']."' AND gender_type='".$_GET['gtype']."' AND price>=".$_POST['filtermin']);
+			}
+			else
+			{	$result = mysql_query("SELECT * from product where shirt_type='".$_GET['stype']."' AND gender_type='".$_GET['gtype']."' AND price<=".$_POST['filtermax']);
+
+			}
+		}
+		else
+		{
+			$result = mysql_query("SELECT * from product where shirt_type='".$_GET['stype']."' AND gender_type='".$_GET['gtype']."'");
+		}
+		$result_array = array();
+		$result_num = 0;
+		while ($row = mysql_fetch_array($result, MYSQL_NUM))
+		{
+			array_push($result_array, $row[0]);
+			$result_num++;
+		}
+
+		
+	}
+	else if(isset($_GET['gtype']))
+	{
+		if(isset($_POST['submit_filter']))
+		{
+			if($_POST['filtermin'] != NULL && $_POST['filtermax'] != NULL)
+			{
+				$result = mysql_query("SELECT * from product where gender_type='".$_GET['gtype']."' AND price>=".$_POST['filtermin']." AND price<=".$_POST['filtermax']);
+			}
+			else if($_POST['filtermin'] != NULL)
+			{
+				$result = mysql_query("SELECT * from product where gender_type='".$_GET['gtype']."' AND price>=".$_POST['filtermin']);
+			}
+			else
+			{
+				$result = mysql_query("SELECT * from product where gender_type='".$_GET['gtype']."' AND price<=".$_POST['filtermax']);
+			}
+		}
+		else
+		{
+			$result = mysql_query("SELECT * from product where gender_type='".$_GET['gtype']."'");
+		}
+		$result_array = array();
+		$result_num = 0;
+		while ($row = mysql_fetch_array($result, MYSQL_NUM))
+		{
+			array_push($result_array, $row[0]);
+			$result_num++;
+		}
+
+		
+	}
+	else if(isset($_GET['all']))
+	{
+		if(isset($_POST['submit_filter']))
+		{
+			if($_POST['filtermin'] != NULL && $_POST['filtermax'] != NULL)
+			{	
+				$result = mysql_query("SELECT * from product where price>=".$_POST['filtermin']." AND price<=".$_POST['filtermax']);
+			}
+			else if($_POST['filtermin'] != NULL)
+			{
+				$result = mysql_query("SELECT * from product where price>=".$_POST['filtermin']);
+			}
+			else
+			{
+				$result = mysql_query("SELECT * from product where price<=".$_POST['filtermax']);
+			}
+		}
+		else
+		{
+			$result = mysql_query("SELECT * from product");
+		}
+
+		$result_array = array();
+		$result_num = 0;
+		while ($row = mysql_fetch_array($result, MYSQL_NUM))
+		{
+			array_push($result_array, $row[0]);
+			$result_num++;
+		}
+
+			
+	}
 ?>
 
 <html>
+
 	<head>
+
 		<title>UPBeat Online Shop</title>
+		<link rel = "stylesheet" type = "text/css" href = "CSS/local.css">
 		<link rel = "stylesheet" type = "text/css" href = "CSS/store.css">
 		<script type = "text/javascript" src = "SCRIPTS/jquery.js"></script>
 
-		<script type = "text/javascript">
-
-			function srch() { document.searchform.sbox.value = ""; }
-
-			$(document).ready(function()
-               {
-               	$("li#option1").mouseover(function()
-                    {
-                    	$("#menbox").animate({"opacity":'0'},{duration: 200});
-                    	$("#womenbox").animate({"opacity":'0'},{duration: 200});
-                    	$("#login").animate({"margin-top":'20%'},{duration: 500});
-                    	$("ul#category").animate({"margin-top":'20%'},{duration: 500});
-               	});
-
-				$("li#option2").mouseover(function()
-                    {
-                    	$("#menbox").animate({"opacity":'0'},{duration: 200});
-                    	$("#womenbox").animate({"opacity":'0'},{duration: 200});
-                    	$("ul#category").animate({"margin-top":'60%'},{duration: 500});
-                    	$("#login").animate({"margin-top":'20%'},{duration: 500});
-               	});
-
-               	$("li#option3").mouseover(function()
-                    {
-                    	$("#menbox").animate({"opacity":'0'},{duration: 200});
-                    	$("#womenbox").animate({"opacity":'0'},{duration: 200});
-                    	$("#login").animate({"margin-top":'20%'},{duration: 500});
-                    	$("ul#category").animate({"margin-top":'20%'},{duration: 500});
-               	});
-
-               	$("li#option4").mouseover(function() // LOGIN
-                    {
-                    	$("#menbox").animate({"opacity":'0'},{duration: 200});
-                    	$("#womenbox").animate({"opacity":'0'},{duration: 200});
-                    	$("ul#category").animate({"margin-top":'20%'},{duration: 500});
-                    	$("#login").animate({"margin-top":'60%'},{duration: 500});
-               	});
-
-
-               	$("li#option5").mouseover(function()
-                    {
-                    	$("#menbox").animate({"opacity":'0'},{duration: 200});
-                    	$("#womenbox").animate({"opacity":'0'},{duration: 200});
-                    	$("#login").animate({"margin-top":'20%'},{duration: 500});
-                    	$("ul#category").animate({"margin-top":'20%'},{duration: 500});
-               	});
-
-               	$("#upbutton").click(function()
-                    {
-                    	$("ul#category").animate({"margin-top":'20%'},{duration: 500});
-                    	$("#upcontain").animate({"opacity":'1'},{duration: 500});
-               	});
-
-               	$("li#catmen").mouseover(function()
-                    {
-               		$("#menbox").animate({"opacity":'1'},{duration: 500});
-               		$("#womenbox").animate({"opacity":'0'},{duration: 200});
-               		$("#msthumbox").animate({"opacity":'1'},{duration: 1500});
-               		$("#mjthumbox").animate({"opacity":'1'},{duration: 2000});
-          		});
-
-          		$("li#catwomen").mouseover(function()
-                    {
-                    	$("#menbox").animate({"opacity":'0'},{duration: 200});
-               		$("#womenbox").animate({"opacity":'1'},{duration: 500});
-               		$("#wsthumbox").animate({"opacity":'1'},{duration: 1500});
-               		$("#wjthumbox").animate({"opacity":'1'},{duration: 2000});
-          		});
-
-               	$("#mainbody, ul#products li, #upcontain").mouseover(function()
-                    {
-                    	$("#menbox").animate({"opacity":'0'},{duration: 200});
-                    	$("#womenbox").animate({"opacity":'0'},{duration: 200});
-                    	$("#login").animate({"margin-top":'20%'},{duration: 500});
-                    	$("ul#category").animate({"margin-top":'20%'},{duration: 500});
-               	});
-               });
-
-          </script>
 	</head>
 
 	<body>
 
-		<div id = 'mainbody'>
+		<div id = 'header'>
+			<div id = 'logo'></div>
 
-			<ul id = 'products'>
-				<li>a</li>
-				<li>b</li>
-				<li>c</li>
-				<li>d</li>
-				<li>e</li>
-				<li>a</li>
-				<li>b</li>
-				<li>c</li>
-				<li>d</li>
-				<li>e</li>
-				<li>a</li>
-				<li>b</li>
-				<li>c</li>
-				<li>d</li>
-				<li>e</li>
-				<li>a</li>
-				<li>b</li>
-				<li>c</li>
-				<li>d</li>
-				<li>e</li>
-			</ul>
+			<div id = 'accheader'
+			>Welcome | 
+			<a href = 'account.php'>Account</a> | 
+			<a href = 'viewcart.php'>Cart</a>
+			</div>
 
+			<div id = 'menuheader'>
+
+				<ul id = 'menu'>
+					<?php
+						if(isset($_SESSION['type']))
+						{
+							if(strcmp($_SESSION['type'], "administrator") == 0)
+							{
+					?>
+						<a class = 'link' href = 'admin.php'><li>HOME</li></a>
+					<?php
+							}
+							else
+							{
+					?>
+						<a class = 'link' href = 'home.php'><li>HOME</li></a>
+					<?php			
+							}
+						}
+						else
+						{
+					?>
+						<a class = 'link' href = 'home.php'><li>HOME</li></a>
+					<?php
+						}
+					?>
+					<a class = 'link' href = 'collections.php?all=1'><li>COLLECTIONS</li></a>
+					<a class = 'link' href = 'store.php?all=1'><li>STORE</li></a>
+											<li>
+
+							<?php
+
+								if(isset($_SESSION['uname']))
+								{
+							?>
+								<a class = 'link' href = 'process.php?out=1'>LOGOUT</a>
+							<?php
+								}
+								else
+								{
+							?>
+								<a class = 'link' href = 'register.php'>LOGIN</a>
+							<?php
+								}
+
+							?>
+
+						</li>
+					<li>
+						<form name = 'searchform' action = 'store.php' method = 'post'>
+							<div id = 'searchline'>
+								<input type = 'text' value = 'Search' name = 'searchbox' id = 'boxsize'/>
+								<input type = 'submit' name = 'sbox' id = 'srchbutton'/>
+							</div>
+						</form>
+					</li>
+				</ul>
+
+			</div>
+
+			<div id = 'catheader'>STORE > <a href = 'men.php'>MEN</a> > WOMEN</div>
 		</div>
 
-		<div id = 'topmost'>
+		<ul id = 'container'>
 
-			<div id = 'logo'></div>
-			
-			<div id = 'account'>
-				<div id = 'acctext'>
-					Welcome | Account | Cart
-				</div>
-			</div>
+		
 
 			<?php
 
-				if (isset($_POST['logbutton']))
+		
+				for($i=0; $i<$result_num; $i++)
 				{
-					$uname = $_POST['uname'];
-
-					if ($uname == null)
+					$result = mysql_query("select * from product where id=".$result_array[$i]);
+					$row = mysql_fetch_array($result);
+					if(isset($_POST['sbox']) || isset($_POST['searchbox']))
 					{
-						echo "<div id = 'checker'>
-							Username must be filled.
-						</div>";
+					echo "<li>
+						<a href = 'viewproduct.php?id=".$row[0]."&&cur=".$i."'><div class = 'picture'>".$row[1]."</div></a>
+						<div class = 'price'>
+							<input type = 'text' name = 'quantity' size = '10'/>
+							<input type = 'submit' name = 'add' value = 'ADD TO CART'/>
+						</div>
+					</li>";
+					}
+					else if(isset($_GET['all']))
+					{
+					echo "<li>
+						<a href = 'viewproduct.php?all=1&&id=".$row[0]."&&cur=".$i."'><div class = 'picture'>".$row[1]."</div></a>
+						<div class = 'price'>
+							<input type = 'text' name = 'quantity' size = '10'/>
+							<input type = 'submit' name = 'add' value = 'ADD TO CART'/>
+						</div>
+					</li>";
+					}
+					else if(isset($_GET['stype']) && isset($_GET['gtype']))
+					{
+					echo "<li>
+						<a href = 'viewproduct.php?gtype=".$_GET['gtype']."&&stype=".$_GET['stype']."&&id=".$row[0]."&&cur=".$i."'><div class = 'picture'>".$row[1]."</div></a>
+						<div class = 'price'>
+							<input type = 'text' name = 'quantity' size = '10'/>
+							<input type = 'submit' name = 'add' value = 'ADD TO CART'/>
+						</div>
+					</li>";
+					}
+					else if(isset($_GET['gtype']))
+					{
+					echo "<li>
+						<a href = 'viewproduct.php?gtype=".$_GET['gtype']."&&id=".$row[0]."&&cur=".$i."'><div class = 'picture'>".$row[1]."</div></a>
+						<div class = 'price'>
+							<input type = 'text' name = 'quantity' size = '10'/>
+							<input type = 'submit' name = 'add' value = 'ADD TO CART'/>
+						</div>
+					</li>";
 					}
 				}
 			?>
 
-			<ul id = 'category'>
 
-				<li id = 'catmen'>Men</li>
-				<li id = 'catwomen'>Women</li>
+		</ul>
 
-			</ul>
-
-			<div id = 'login'>
-
-				<div id = 'create'>Create an account. <input type = 'submit' id = 'upbutton' value = 'SIGN UP'/></div>
-				
-				<form name = 'loginform' method = 'post' action = ''>
-
-					<div id = 'namediv'>Username <input type = 'text' name = 'uname' size = '15'/></div>
-					<div id = 'passdiv'>Password <input type = 'password' name = 'pword' size = '15'/></div>
-					<div id = 'button'><input type = 'submit' name = 'logbutton' value = 'LOG IN'/></div>
-				
-				</form>
-
-			</div>
-			
-			<div id = 'menu'>
-
-				<form name = 'searchform' method = 'post' action = 'results.php'>
-
-					<ul id = 'options'>
-						<li id = 'option1'>HOME</li>
-						<li id = 'option2'>COLLECTION</li>
-						<li id = 'option3'><a class = 'links' href = 'store.php'>STORE</a></li>
-						<li id = 'option4'>LOG IN</li>
-						<li id = 'option5'><input type = 'text' name = 'sbox' value = 'Search' onClick = 'return srch(this);' size = '15'></li>
-					</ul>
-
-				</form>
-
-			</div>
-
-		</div>
-
-		<div id = 'menbox'>
-
-			<div id = 'msthumb'>
-				<div id = 'msthumbox'>
-					<div class = 'slabel'></div>
-				</div>
-			</div>
-
-			<div id = 'mjthumb'>
-				<div id = 'mjthumbox'>
-					<div class = 'jlabel'></div>
-				</div>
-			</div>
-
-		</div>
-
-		<div id = 'womenbox'>
-
-			<div id = 'wsthumb'>
-				<div id = 'wsthumbox'>
-					<div class = 'slabel'></div>
-				</div>
-			</div>
-
-			<div id = 'wjthumb'>
-				<div id = 'wjthumbox'>
-					<div class = 'jlabel'></div>
-				</div>
-			</div>
-
-		</div>
-
-		<div id = 'upcontain'>
-
-			<div id = 'upcontent'>
-
-				<form method = 'post' action = '' name = 'signupform'>
-
-					<div id = 'upmain'>
-
-						<br/>
-						<table id = 'up'>
-
-							<tr>
-								<td>First Name</td>
-								<td><input type = 'text' name = 'upfname'></td>
-								<td>Last Name</td>
-								<td><input type = 'text' name = 'uplname'></td>
-							</tr>
-
-							<tr>
-								<td>Username</td>
-								<td><input type = 'text' name = 'upuname'></td>
-								<td>Contact Number</td>
-								<td><input type = 'text' name = 'uplname'></td>
-							</tr>
-
-							<tr>
-								<td>Mailing Address</td>
-								<td><input type = 'text' name = 'maddress'></td>
-								<td>Zip Code</td>
-								<td><input type = 'text' name = 'uplname'></td>
-							</tr>
-
-							<tr>
-								<td>E-mail</td>
-								<td><input type = 'text' name = 'upemail'/></td>
-								<td>Confirm E-mail</td>
-								<td><input type = 'text' name = 'uplname'></td>
-							</tr>
-
-							<tr>
-								<td>Password</td>
-								<td><input type = 'password' name = 'upword'></td>
-								<td>Confirm Password</td>
-								<td><input type = 'text' name = 'uplname'></td>
-							</tr>
-
-							<tr>
-								<td colspan = '3'><input type = 'submit' name = 'signupbutton' value = 'SIGN UP!'></td>
-							</tr>
-
-						</table>
-
-					</div>
-
-				</form>
-
-			</div>
-
-		</div>
+		<div id = 'footer'>Copyright 2013 UPBeat. All Rights Reserved.</div>
 
 	</body>
+
+
 </html>
