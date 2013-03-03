@@ -1,105 +1,64 @@
 function validateForm()
 {
-	if(checkValue(upfname)&&
-	checkValue(uplname)&&
-	checkValue(upuname)&&
-	checkValue(upaddress)&&
-	checkValue(upcontact)&&
-	checkValue(upemail)&&
-	checkValue(upconemail)&&
-	checkValue(upword)&&
-	checkValue(upconpword)){ checkValue.submit();}
+	var i;
+	var j;
+	var k;
+	var l;
+	var fcount;
+	var lcount;
+	var ccount;
+	var number = "0123456789";
+	var alpha = "abcdefghijklmnopqrstuvwxyz";
+	var upuname = document.forms["signupform"]["upuname"].value;
+	var upfname = document.forms["signupform"]["upfname"].value;
+	var uplname = document.forms["signupform"]["uplname"].value;
+	var upemail = document.forms["signupform"]["upemail"].value;
+	var uppword = document.forms["signupform"]["upword"].value;
+	var address = document.forms["signupform"]["upaddress"].value;
+	var contact = document.forms["signupform"]["upcontact"].value;
+	var reemail = document.forms["signupform"]["upconemail"].value;
+	var repword = document.forms["signupform"]["upconpword"].value;
 
-	else
+	fcount = checkInvalid(upfname,alpha);
+	lcount = checkInvalid(uplname,alpha);
+	ccount = checkInvalid(contact,number);
+
+	if (fcount != upfname.length) { document.getElementById("filluperror").innerHTML = "First name contains an invalid character!";}
+	else if (lcount != uplname.length) { document.getElementById("filluperror").innerHTML = "Last name contains an invalid character!";}
+	else if (ccount != 11) { document.getElementById("filluperror").innerHTML = "Please enter an 11-digit contact number!";}
+	else if (upemail != reemail){ document.getElementById("filluperror").innerHTML = "Email addresses do not match";}
+	else if (uppword != repword){ document.getElementById("filluperror").innerHTML = "Passwords do not match";}
+	else return true;
+
+	if (!upuname || !upfname || !uplname || !upemail || !uppword || !address || !contact || !reemail || !repword) 
 	{
-		checkValue(upfname);
-		checkValue(uplname);
-		checkValue(upuname);
-		checkValue(upaddress);
-		checkValue(upcontact);
-		checkValue(upemail);
-		checkValue(upconemail);
-		checkValue(upword);
-		checkValue(upconpword);
-
-		return false;
+		document.getElementById("filluperror").innerHTML = "Please complete all fields!";
 	}
+
+	return false;
 }
 
-
-function checkValue(field1)
+function checkInvalid(nvalue,compare)
 {
-	var x=document.forms["signup"]["upword"].value;
-	var y=document.forms["signup"]["upconpword"].value;
-	var e=document.forms["signup"]["upemail"].value;
-	var atpos=e.indexOf("@");
-	var dotpos=e.lastIndexOf(".");
+	var i;
+	var j;
+	var count = 0;
 
-	if(field1.value==null || field1.value=="")
-	{
-		chooseError(field1);
-		return false;
-	}
-	else if(field1.value!=null || field1.value!="")
-	{
-		clearError(field1);
-		return true;
-	}
-	else if(x!=y)
-	{
-		document.getElementById("conpasserror").innerHTML = "Passwords did not match!";
-		return false;
-	}
-	else if(atpos<1 || dotpos<atpos+2 || dotpos+2>=e.length)
-	{
-		document.getElementById("emailerror").innerHTML = "Invalid E-mail Address";
-		return false;
-	}
-	else { return true; }
+	for (i = 0; i < nvalue.length; i++)
+		for (j = 0; j < compare.length; j++)
+			if (nvalue[i].toLowerCase() == compare[j]) count++;
+
+	return count;
 }
 
-function clearError(field1)
+function validateLogin()
 {
-	if(field1==upfname) {
-		document.getElementById("fnameerror").innerHTML = "";
-	} if(field1==uplname) {
-		document.getElementById("lnameerror").innerHTML = "";
-	} if(field1==upuname) {
-		document.getElementById("unameerror").innerHTML = "";
-	} if(field1==upaddress) {
-		document.getElementById("addresserror").innerHTML = "";
-	} if(field1==upcontact) {
-		document.getElementById("contacterror").innerHTML = "";
-	} if(field1==upemail) {
-		document.getElementById("emailerror").innerHTML = "";
-	} if(field1==upconemail) {
-		document.getElementById("conemailerror").innerHTML = "";
-	} if(field1==upword) {
-		document.getElementById("passerror").innerHTML = "";
-	} if(field1==upconpword) {
-		document.getElementById("conpasserror").innerHTML = "";
-	}
-}
+	var uname = document.forms["loginform"]["uname"].value;
+	var pword = document.forms["loginform"]["pword"].value;
 
-function chooseError(field1)
-{
-	if(field1==upfname) {
-		document.getElementById("fnameerror").innerHTML = "Empty First Name";
-	} if(field1==uplname) {
-		document.getElementById("lnameerror").innerHTML = "Empty Last Name";
-	} if(field1==upuname) {
-		document.getElementById("unameerror").innerHTML = "Empty Username";
-	} if(field1==upaddress) {
-		document.getElementById("addresserror").innerHTML = "Empty Mailing Address";
-	} if(field1==upcontact) {
-		document.getElementById("contacterror").innerHTML = "Empty Contact Number";
-	} if(field1==upemail) {
-		document.getElementById("emailerror").innerHTML = "Empty E-mail Address";
-	} if(field1==upconemail) {
-		document.getElementById("conemailerror").innerHTML = "Must Confirm E-mail Address";
-	} if(field1==upword) {
-		document.getElementById("passerror").innerHTML = "Empty Password";
-	} if(field1==upconpword) {
-		document.getElementById("conpasserror").innerHTML = "Must Confirm Password";
-	}
+	if (!uname && pword){ document.getElementById("fillerror").innerHTML = "Please fill in username!";}
+	else if (uname && !pword){ document.getElementById("fillerror").innerHTML = "Please enter password!";}
+	else if (!uname && !pword){ document.getElementById("fillerror").innerHTML = "Please enter username and password!";}
+	else if (uname && pword){ return true;}
+	return false;
 }
