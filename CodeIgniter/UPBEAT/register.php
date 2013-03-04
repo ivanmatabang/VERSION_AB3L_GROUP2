@@ -57,7 +57,7 @@
 					<span id = 'filluperror'>
 
 						<?php 
-							
+
 							if(isset($_POST['signupbutton']))
 							{
 								$uname = $_POST['upuname'];

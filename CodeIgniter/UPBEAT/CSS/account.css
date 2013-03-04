@@ -1,0 +1,6 @@
+#mainaccount			{margin-top:15px; margin-left: 5%; margin-bottom: 10px; padding-bottom: 20px; float: left; width: 90%; box-shadow: 0px 5px 15px 0px black;}
+#accleft				{margin-left: 5%; margin-top: 20px; border: 3px solid black; width: 14%; height: 120px; background-size: 100% 100%; float: left; background-image: url("../IMAGES/no_image.png");}
+#accountdiv			{margin-left: 5%; margin-top: 20px; float: left; font-family: arial; width: 60%; }
+td 					{width: 33%;}
+input[type="submit"]	{text-align: center; width: 60%; height: 25px; color: white; border-color: black; background-color: rgb(152,0,0);}
+span 				{color: red; font-size: 12px;}

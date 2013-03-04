@@ -9,11 +9,32 @@
 
 	<body>
 	<form name = 'addadministrator' method = 'post' action = 'process.php'>
-		First Name: <input type = 'text' name = 'adminfname' size = '15' value=''/><br />
-		Last Name: <input type = 'text' name = 'adminlname' size = '15' value=''/><br />
-		Username: <input type = 'text' name = 'adminuname' size = '15' value=''/><br />
-		Password: <input type = 'password' name = 'adminpword' size = '15' value=''/><br />
-		Confirm Password: <input type = 'password' name = 'adminconpword' size = '15' value=''/><br />
+		<table>
+			<tr>
+				<td>First Name:</td>
+				<td><input type = 'text' name = 'adminfname' size = '15' value=''/><br /></td>
+			</tr>
+
+			<tr>
+				<td>Last Name:</td>
+				<td><input type = 'text' name = 'adminlname' size = '15' value=''/><br /></td>
+			</tr>
+
+			<tr>
+				<td>Username:</td>
+				<td><input type = 'text' name = 'adminuname' size = '15' value=''/><br /></td>
+			</tr>
+
+			<tr>
+				<td>Password:</td>
+				<td><input type = 'password' name = 'adminpword' size = '15' value=''/><br /></td>
+			</tr>
+
+			<tr>
+				<td>Confirm Password:</td>
+				<td><input type = 'password' name = 'adminconpword' size = '15' value=''/><br /></td>
+			</tr>
+		</table>
 
 		<input type = 'submit' name = 'addadmin' value='Add Administrator'/>
 	</form>
