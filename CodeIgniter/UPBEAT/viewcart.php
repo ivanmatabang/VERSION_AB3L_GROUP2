@@ -26,17 +26,18 @@
 		{
 		 	die('Could not connect: ' . mysql_error());
 		}
-
-		if(strcmp($_SESSION['type'], "customer") == 0)
+		//echo $_SESSION['id'];
+		$result = mysql_query("SELECT * FROM orderr where custom_id=".$_SESSION['id']." AND is_delivered='NO'");
+		//echo "SELECT * FROM orderr where custom_id=".$_SESSION['id'];
+		if($result)
 		{
-		$result = mysql_query("SELECT * from customer where id=".$_SESSION['id']);
+
+   			//echo "<br/>yey";
 		}
 		else
 		{
-			
-		$result = mysql_query("SELECT * from administrator where id=".$_SESSION['id']);	
+			//echo "<br/>Delete Producterror.";
 		}
-		$row = mysql_fetch_array($result);
 
 		
 	}
@@ -45,4 +46,27 @@
 		header("Location:register.php");
 	}
 
+?>
+<html>
+<head>
+
+</head>
+
+
+<body>
+<?php
+	while($row = mysql_fetch_array($result, MYSQL_NUM))
+	{
+		echo $row[0]."  ".$row[1]."   ";
+		echo "<a href = 'process.php?delcart=1&&pid=".$row[0]."'>Remove</a><br />";
+	}
+?>
+</body>
+
+</html>
+
+
+<?php
+
+mysql_close($con);	
 ?>

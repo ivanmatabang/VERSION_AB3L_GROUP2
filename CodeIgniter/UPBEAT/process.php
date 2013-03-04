@@ -224,15 +224,6 @@
 		{
 			echo "<br>Delete Producterror.";
 		}
-		$result = mysql_query("DELETE from product_color where prod_id=".$_GET[id]);
-		if($result)
-		{
-   			echo "<br>Delete Product succesful.";
-		}
-		else
-		{
-			echo "<br>Delete Producterror.";
-		}
 		$result = mysql_query("DELETE from product_size where prod_id=".$_GET[id]);
 		if($result)
 		{
@@ -272,8 +263,8 @@
  			die('Could not connect: ' . mysql_error());
   		}
 		
-		$result = mysql_query("UPDATE product SET code='".$_POST['edcode']."', image='".$_POST['edimage']."', price=".$_POST['edprice'].", description='".$_POST['eddesc']."', gender_type='".$_POST['edgender']."', shirt_type='".$_POST['edshirt']."' where id=".(int)$_GET['id']);
-		echo "UPDATE product SET code='".$_POST['edcode']."', image='".$_POST['edimage']."', price=".$_POST['edprice'].", description='".$_POST['eddesc']."', gender_type='".$_POST['edgender']."', shirt_type='".$_POST['edshirt']."' where id=".(int)$_GET['id'];
+		$result = mysql_query("UPDATE product SET code='".$_POST['edcode']."', image='".$_POST['edimage']."', description='".$_POST['eddesc']."', gender_type='".$_POST['edgender']."', shirt_type='".$_POST['edshirt']."' where id=".$_GET['id']);
+		echo "UPDATE product SET code='".$_POST['edcode']."', image='".$_POST['edimage']."', description='".$_POST['eddesc']."', gender_type='".$_POST['edgender']."', shirt_type='".$_POST['edshirt']."' where id=".(int)$_GET['id'];
 		if($result)
 		{
    			echo "<br>Edit Product succesful.";
@@ -283,27 +274,18 @@
 			echo "<br>Edit Product dderror.";
 		}
 		$id = $_GET['id'];
-		$result = mysql_query("DELETE from product_color where prod_id=".$id);
+		$result = mysql_query("DELETE from product_size where prod_id=".$id);
 
-		$colors = $_POST['edcolors'];
-		$token = strtok($colors, " ");
-
-		while ($token != false)
+	 	for($i=0;$i<$_GET['n'];$i++)
 	 	{
-	 		echo "INSERT INTO product_color (prod_id, prod_color) VALUES (".$id.", '".$token."')";
-	 		$result = mysql_query("INSERT INTO product_color (prod_id, prod_color) VALUES (".$id.", '".$token."')");
-	 		$token = strtok(" ");
+			if(strcmp($_POST['edsize'.($i+1)], "") != 0 && strcmp($_POST['edprice'.($i+1)], "") != 0)
+			{
+				echo "<br />INSERT INTO product_size (prod_id, prod_size, price) VALUES (".$id.", '".$_POST['edsize'.($i+1)]."', ".$_POST['edprice'.($i+1)].")";
+				$result3 = mysql_query("INSERT INTO product_size (prod_id, prod_size, price) VALUES (".$id.", '".$_POST['edsize'.($i+1)]."', ".$_POST['edprice'.($i+1)].")");
+				if($result3){echo "yey";}else{echo "aww";}
+			}
 	 	}
 
-	 	$result = mysql_query("DELETE from product_size where prod_id=".$id);
-		$sizes = $_POST['edsizes'];
-		$token = strtok($sizes, " ");
-
-		while ($token != false)
-	 	{
-	 		$result = mysql_query("INSERT INTO product_size (prod_id, prod_size) VALUES (".$id.", '".$token."')");
-	 		$token = strtok(" ");
-	 	} 
 	 	$result = mysql_query("DELETE from product_key where prod_id=".$id);
 		$keys = $_POST['edkeys'];
 		$token = strtok($keys, " ");
@@ -355,16 +337,14 @@
 		echo "INSERT INTO product (id, code, image, price, description, gender_type, shirt_type) 
 							VALUES (NULL, '".
 								$_POST['addcode']."', '".
-								$_POST['addimage']."','".
-								$_POST['addprice'].", '".
+								$_POST['addimage']."', '".
 								$_POST['adddesc']."', '".
 								$_POST['addgender']."', '".
 								$_POST['addshirt']."')";
-		$result = mysql_query("INSERT INTO product (id, code, image, price, description, gender_type, shirt_type) 
+		$result = mysql_query("INSERT INTO product (id, code, image, description, gender_type, shirt_type) 
 							VALUES (NULL, '".
 								$_POST['addcode']."', '".
-								$_POST['addimage']."',".
-								$_POST['addprice'].", '".
+								$_POST['addimage']."', '".
 								$_POST['adddesc']."', '".
 								$_POST['addgender']."', '".
 								$_POST['addshirt']."')");
@@ -379,21 +359,6 @@
 		}
 		$result2 = mysql_query("SELECT LAST_INSERT_ID()");
    		$row = mysql_fetch_array($result2);
-		$colors = $_POST['addcolors'];
-		$token = strtok($colors, " ");
-		while ($token != false)
-	 	{
-	 		echo "INSERT INTO product_color (prod_id, prod_color) VALUES (".$row[0].", '".$token."')";
-	 		$result = mysql_query("INSERT INTO product_color (prod_id, prod_color) VALUES (".$row[0].", '".$token."')");
-	 		$token = strtok(" ");
-	 	}
-		$sizes = $_POST['addsizes'];
-		$token = strtok($sizes, " ");
-		while ($token != false)
-	 	{
-	 		$result = mysql_query("INSERT INTO product_size (prod_id, prod_size) VALUES (".$row[0].", '".$token."')");
-	 		$token = strtok(" ");
-	 	} 
 		$keys = $_POST['addkeys'];
 		$token = strtok($keys, " ");
 		while ($token != false)
@@ -402,6 +367,19 @@
 	 		echo "INSERT INTO product_key (prod_id, prod_key) VALUES (".$row[0].", '".$token."')";
 	 		$token = strtok(" ");
 	 	} 
+		
+		
+
+		for($i=0;$i<$_GET['s'];$i++)
+		{
+			
+			if(strcmp($_POST['addsize'.($i+1)], "") != 0 && strcmp($_POST['addprice'.($i+1)], "") != 0)
+			{
+				echo "<br />INSERT INTO product_size (prod_id, prod_size, price) VALUES (".$row[0].", '".$_POST['addsize'.($i+1)]."', ".$_POST['addprice'.($i+1)].")";
+				$result3 = mysql_query("INSERT INTO product_size (prod_id, prod_size, price) VALUES (".$row[0].", '".$_POST['addsize'.($i+1)]."', ".$_POST['addprice'.($i+1)].")");
+				if($result3){echo "yey";}else{echo "aww";}
+			}
+		}
 		mysql_close($con);
 		header("Location:admin.php");
 
@@ -427,5 +405,81 @@
 		mysql_close($con);
 		header("Location:admin.php");
 
+	}
+
+	if(isset($_POST['addcart']))
+	{
+		$result = mysql_query("INSERT INTO orderr (id, prod_id, custom_id, quantity, is_delivered, date_ordered, time_ordered) 
+							VALUES (NULL, ".
+								$_GET['pid'].", ".
+								$_SESSION['id'].", ".
+								$_POST['quantity'].", 'NO', 
+								CURDATE(), CURTIME())");
+		echo  "INSERT INTO orderr (id, prod_id, custom_id, quantity, is_delivered, date_ordered, time_ordered) 
+							VALUES (NULL, ".
+								$_GET['pid'].", ".
+								$_SESSION['id'].", ".
+								$_POST['quantity'].", 'NO', 
+								'CURDATE()', 'CURTIME()')";
+		if($result)
+		{
+   			echo "<br>Sign up succesful.";
+		}
+		else
+		{
+			echo "<br>Sign up error.";
+		}
+		mysql_close($con);
+		header("Location:store.php?all=1");
+	}
+
+
+	if(isset($_GET['delcart']))
+	{
+		echo "DELETE from orderr where id=".$_GET['pid'];
+		$result = mysql_query("DELETE from orderr where id=".$_GET['pid']);
+		if($result)
+		{
+   			echo "<br>Delete Product succesful.";
+		}
+		else
+		{
+			echo "<br>Delete Producterror.";
+		}
+
+		mysql_close($con);
+		header("Location:viewcart.php");
+	}
+
+	if(isset($_GET['approve']))
+	{
+		$result = mysql_query("UPDATE orderr SET is_delivered='YES' where id=".$_GET['oid']);
+		if($result)
+		{
+   			echo "<br>Delete Product succesful.";
+		}
+		else
+		{
+			echo "<br>Delete Producterror.";
+		}
+		$result = mysql_query("INSERT INTO delivers (order_id, date_delivered, time_delivered) VALUES (".$_GET['oid'].", CURDATE(), CURTIME())");
+		mysql_close($con);
+		header("Location:vieworders.php?vieword=1");
+	}
+
+	if(isset($_GET['uncheck']))
+	{
+		$result = mysql_query("UPDATE orderr SET is_delivered='NO' where id=".$_GET['oid']);
+		if($result)
+		{
+   			echo "<br>Delete Product succesful.";
+		}
+		else
+		{
+			echo "<br>Delete Producterror.";
+		}
+		$result = mysql_query("DELETE from delivers where order_id=".$_GET['oid']);
+		mysql_close($con);
+		header("Location:vieworders.php?vieword=1");
 	}
 ?>

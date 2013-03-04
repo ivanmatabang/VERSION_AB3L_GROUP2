@@ -278,8 +278,10 @@
 					echo "<li>
 						<a href = 'viewproduct.php?id=".$row[0]."&&cur=".$i."'><div class = 'picture'>".$row[1]."</div></a>
 						<div class = 'price'>
+							<form name = 'addtocart' method = 'post' action = 'process.php?pid=".$row[0]."'>
 							<input type = 'text' name = 'quantity' size = '10'/>
-							<input type = 'submit' name = 'add' value = 'ADD TO CART'/>
+							<input type = 'submit' name = 'addcart' value = 'ADD TO CART'/>
+							</form>
 						</div>
 					</li>";
 					}
@@ -288,8 +290,10 @@
 					echo "<li>
 						<a href = 'viewproduct.php?all=1&&id=".$row[0]."&&cur=".$i."'><div class = 'picture'>".$row[1]."</div></a>
 						<div class = 'price'>
+							<form name = 'addtocart' method = 'post' action = 'process.php?pid=".$row[0]."'>
 							<input type = 'text' name = 'quantity' size = '10'/>
-							<input type = 'submit' name = 'add' value = 'ADD TO CART'/>
+							<input type = 'submit' name = 'addcart' value = 'ADD TO CART'/>
+							</form>
 						</div>
 					</li>";
 					}
@@ -298,8 +302,10 @@
 					echo "<li>
 						<a href = 'viewproduct.php?gtype=".$_GET['gtype']."&&stype=".$_GET['stype']."&&id=".$row[0]."&&cur=".$i."'><div class = 'picture'>".$row[1]."</div></a>
 						<div class = 'price'>
+							<form name = 'addtocart' method = 'post' action = 'process.php?pid=".$row[0]."'>
 							<input type = 'text' name = 'quantity' size = '10'/>
-							<input type = 'submit' name = 'add' value = 'ADD TO CART'/>
+							<input type = 'submit' name = 'addcart' value = 'ADD TO CART'/>
+							</form>
 						</div>
 					</li>";
 					}
@@ -308,8 +314,10 @@
 					echo "<li>
 						<a href = 'viewproduct.php?gtype=".$_GET['gtype']."&&id=".$row[0]."&&cur=".$i."'><div class = 'picture'>".$row[1]."</div></a>
 						<div class = 'price'>
+							<form name = 'addtocart' method = 'post' action = 'process.php?pid=".$row[0]."'>
 							<input type = 'text' name = 'quantity' size = '10'/>
-							<input type = 'submit' name = 'add' value = 'ADD TO CART'/>
+							<input type = 'submit' name = 'addcart' value = 'ADD TO CART'/>
+							</form>
 						</div>
 					</li>";
 					}

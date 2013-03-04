@@ -1,14 +1,11 @@
-<?php
-	session_start();
 
-?>
 <html>
 	<head>
 
 	</head>
 
 	<body>
-	<form name = 'addproduct' method = 'post' action = 'process.php'>
+	<form name = 'addproduct' method = 'post' action = 'process.php?s=<?php echo $_GET['s'];?>'>
 		<table>
 			<tr>
 				<td>Item Code:</td>
@@ -19,12 +16,6 @@
 			<tr>
 				<td>Image:</td>
 				<td><input type = 'text' name = 'addimage' size = '15' value=''/></td>
-			</tr>
-			<br />
-
-			<tr>
-				<td>Price:</td>
-				<td><input type = 'text' name = 'addprice' size = '15' value=''/></td>
 			</tr>
 			<br />
 
@@ -43,32 +34,31 @@
 			<tr>
 				<td>Shirt Type:</td>
 				<td><select name = 'addshirt'>
-						<option value = 'typeshirt'>Shirt</option>
-						<option value = 'type3/4'>3/4 Sleeves</option>
-						<option value = 'typejacket'>Jacket</option>
-						<option value = 'typecaps'>Cap</option>
-					</select></td>
-			</tr>
-			<br />	
-
-			<tr>
-				<td>Colors:</td>
-				<td><input type = 'text' name = 'addcolors' size = '15' value=''/></td>
-			</tr>
-			<br />
-
-			<tr>
-				<td>Sizes:</td>
-				<td><select name = 'addsizes'>
-						<option value = 'sizexs'>XS</option>
-						<option value = 'sizes'>S</option>
-						<option value = 'sizem'>M</option>
-						<option value = 'sizel'>L</option>
-						<option value = 'sizexl'>XL</option>
-						<option value = 'sizexxl'>XXL</option>
+						<option value = 't-shirt'>Shirt</option>
+						<option value = '3/4'>3/4 Sleeves</option>
+						<option value = 'jacket'>Jacket</option>
+						<option value = 'cap'>Cap</option>
+						<option value = 'other'>Other</option>
 					</select></td>
 			</tr>
 			<br />
+
+			<?php
+			for($j = 0 ; $j < $_GET['s'] ; $j++)
+			{
+				?>
+			<tr>
+				<td>Size:</td>
+				<td><input type = 'text' name = 'addsize<?php $k = $j + 1; echo $k;?>' size = '15' /></td>
+			
+				<td>Price:</td>
+				<td><input type = 'text' name = 'addprice<?php $k = $j + 1; echo $k;?>' size = '15' /></td>
+			</tr>
+			
+			<?php
+			}
+			?>
+
 
 			<tr>
 				<td>Keys:</td>
@@ -77,10 +67,15 @@
 			<br />
 
 			<tr>
-				<td><input type = 'submit' name = 'addpro' value='Add to Shop'/></td>
+				<td><input type = 'submit' name = 'addpro' value='Add to Shop' /></td>
 			</tr>
 		</table>
 	</form>
+
+
+		
+
+
 	</body>
 
 

@@ -79,6 +79,7 @@
 				> <a href = 'addadmin.php'> Add Administrator </a>
 				> <a href = 'addproduct.php'> Add Product </a>
 				> <a href = 'viewcustomers.php?viewcus=1'> View Customers </a>
+				> <a href = 'vieworders.php?vieword=1'> View Orders </a>
 			</div>
 		
 		</div>
