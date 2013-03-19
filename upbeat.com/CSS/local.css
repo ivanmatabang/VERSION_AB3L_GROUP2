@@ -1,0 +1,272 @@
+body
+{
+	margin: auto; 
+	min-width: 1000px; 
+	font-family: arial; 
+	max-width: 1500px; 
+	overflow: auto; 
+	background-size: 100% 100%; 
+	background-image: url("../IMAGES/colorful.jpg"); 
+	background-attachment: fixed;
+}
+
+#header			
+{
+	margin: auto; 
+	float: left; 
+	width: 100%; 
+	height: 115px; 
+	background-color: black; 
+	color: white;
+	opacity: 0.8;
+	border-bottom: 2px solid maroon;
+}
+
+#menuline			
+{
+	margin-top: 35px; 
+	float: right; 
+	text-align: right; 
+	width: 100%; 
+	height: 30px;
+}
+
+ul#menulist		
+{
+	float: right; 
+	margin-top: 0%; 
+	padding: 0%; 
+	color: black; 
+	margin-right: 2%; 
+	width: 70%; 
+	height: 30px; 
+	font-family: arial;
+}
+
+ul#menulist li		
+{
+	float: right; 
+	width: 17%; 
+	height: 25px; 
+	font-size: 100%; 
+	font-family: Arial; 
+	list-style: none; 
+	text-align: center; 
+	padding-top: 5px;
+	color: white;
+	border-right: 1px solid white;
+	/*border: 2px solid white; 
+	border-right: 0px; 
+	border-bottom: 0px; 
+	color: white; 
+	background-color: black; 
+	border-top-left-radius: 10px; 
+	border-top-right-radius: 10px;*/
+}
+
+ul#menulist li#last	
+{
+	border-right: 0px;
+}
+
+#srchline			
+{
+	float: right; 
+	margin-top: 15px; 
+	margin-right: 2%; 
+	width: 18%; 
+	height: 25px; 
+	text-align: center;
+}
+
+#logo			
+{
+	margin-left: 5%; 
+	top: 5px; 
+	position: absolute; 
+	width: 180px; 
+	height: 110px; 
+	background-repeat: no-repeat;
+	background-size: 98% 98%; 
+	background-image: url("../IMAGES/wlogo.png");
+}
+
+#stxtbox			
+{
+	width: 75%; 
+	height: 25px; 
+	float: right; 
+	border: 1px solid black;
+}
+
+#sbutton			
+{
+	width: 25px; 
+	margin: 0%; 
+	float: right; 
+	padding: 0%; 
+	height: 25px; 
+	border: 1px solid black; 
+	background-size: 25px 25px; 
+	background-image: url("../IMAGES/sbutton.png");
+}
+
+#footer			
+{
+	float: left; 
+	padding-top: 10px; 
+	font-size: 70%; 
+	opacity: 0.8; 
+	font-family: arial; 
+	width: 100%; 
+	text-align: center; 
+	border-top: 5px solid maroon; 
+	color: white; 
+	height: 30px; 
+	background-color: black;
+}
+
+a.link			
+{
+	list-style: none; 
+	text-decoration: none; 
+	color: inherit;
+}
+
+#submenu, #adsubmenu			
+{
+	float: left; 
+	background-color: maroon; 
+	opacity: 0.75; 
+	border-bottom: 2px solid black; 
+	width: 100%; 
+	height: 85px;
+}
+
+span
+{
+	font-size: 80%;
+	padding-right: 2%;
+	color: red;
+	text-align: center;
+}
+
+#upleft
+{
+	float: left;
+	width: 25%;
+	color: white;
+	height: 30px;
+	margin-top: 30px;
+	text-align: center;
+}
+
+#logright
+{
+	float: left;
+	width: 75%;
+	height: 30px;
+	color: white;
+	text-align: center;
+	margin-top: 30px;
+}
+
+ul#accountline
+{
+	padding: 0%;
+	margin-top: 30px;
+	margin-left: 10%;
+	width: 80%;
+	height: 30px;
+}
+
+ul#accountline li
+{
+	float: left;
+	width: 25%;
+	height: 30px;
+	color: white;
+	text-align: center;
+	list-style: none;
+}
+
+ul#adminaccount
+{
+	padding: 0%;
+	margin-top: 30px;
+	margin-left: 5%;
+	width: 90%;
+	height: 30px;
+}
+
+ul#adminaccount li
+{
+	float: left;
+	width: 20%;
+	height: 30px;
+	color: white;
+	text-align: center;
+	list-style: none;
+}
+
+#deletebox			
+{
+	position: absolute; 
+	top: 40%; 
+	left: 35%; 
+	width: 29.5%; 
+	height: 20%; 
+	background-color: white; 
+	border: 2px solid black; 
+	border-radius: 10px; 
+	text-align: center;
+}
+
+#blackcover			
+{
+	position: fixed; 
+	top: 0%; 
+	left: 0%; 
+	width: 100%; 
+	height: 100%; 
+	background-color: black; 
+	opacity: 0.85;
+}
+
+img#carticon
+{
+	width: 30px;
+	height: 30px;
+	margin-right: 5px;
+	padding: 0%;
+}
+
+#prompt
+{
+	position: absolute;
+	top: 40%;
+	left: 35%;
+	width: 29.5%;
+	padding-top: 3%;
+	height: 10%;
+	font-size: 110%;
+	border: 5px solid maroon;
+	text-align: center;
+	border-radius: 10px;
+	background-color: white;
+	box-shadow: 1px 5px 10px 5px black;
+}
+
+#s
+{
+	position: fixed;
+	top: 40%;
+	left: 35%;
+	width: 25%;
+	height: 15%;
+	padding-top: 2%;
+	border-radius: 5px;
+	text-align: center;
+	box-shadow: 1px 5px 5px 1px black;
+	background-color: white;
+}

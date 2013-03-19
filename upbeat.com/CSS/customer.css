@@ -1,0 +1,99 @@
+#maincontent		
+{
+	float: left; 
+	width: 100%; 
+	height: 750px;
+}
+
+#customlist
+{
+	float: left;
+	margin-top: 50px;
+	margin-left: 5%;
+	padding-top: 50px;
+	width: 90%;
+	height: 600px;
+	border-radius: 10px;
+	border: 2px solid black;
+	background-color: white;
+}
+
+ul.line
+{
+	float: left;
+	width: 90%;
+	padding: 0%;
+	height: 40px;
+	margin: 0%;
+	margin-left: 5%;
+	border-radius: 5px;
+	border: 2px solid white;
+}
+
+ul.topline
+{
+	float: left;
+	width: 90%;
+	padding: 0%;
+	height: 55px;
+	margin: 0%;
+	font-weight: bold;
+	margin-left: 5%;
+	border-radius: 5px;
+	background-color: white;
+	border: 2px solid black;
+	margin-bottom: 10px;
+}
+
+ul.topline li
+{
+	float: left;
+	width: 20%;
+	height: 55px;
+	color: maroon;
+	list-style: none;
+	padding-top: 20px;
+	text-align: center;
+}
+
+ul.line li
+{
+	float: left;
+	width: 20%;
+	height: 30px;
+	list-style: none;
+	padding-top: 10px;
+	text-align: center;
+	box-shadow: 0px 2px 0px 0px black;
+}
+
+ul.line li.lastcol
+{
+	width: 10%;
+}
+
+ul.line li.addcol, ul.topline li.addcol
+{
+	width: 30%;
+}
+
+#custompage
+{
+	position: absolute;
+	margin-top: 545px;
+	margin-left: 5%;
+	width: 80%;
+	height: 30px;
+	text-align: center;
+}
+
+#check
+{
+	width: 80%;
+	height: 80%;
+	color: white;
+	border-radius: 5px;
+	padding: 0%;
+	border: 1px solid black;
+	background-color: maroon;
+}

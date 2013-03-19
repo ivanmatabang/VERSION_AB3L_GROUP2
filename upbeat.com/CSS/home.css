@@ -1,0 +1,59 @@
+#maincontent		
+{
+	float: left; 
+	width: 100%; 
+	height: 700px;
+}
+
+#slideshow		
+{
+	float: left; 
+	margin-left: 5%; 
+	overflow: hidden; 
+	margin-top: 50px; 
+	width: 90%; 
+	height: 575px;
+	border: 2px solid black;
+	border-radius: 10px;
+	box-shadow: 1px 5px 5px 1px black;
+}
+
+#switcher			
+{
+	float: left; 
+	padding: 0%; 
+	margin-top: 25px; 
+	margin-left: 48%; 
+	width: 20%; 
+	height: 30px;
+}
+
+.circles			
+{
+	width: 13px; 
+	height: 13px; 
+	border-radius: 13px; 
+	margin-left: 3%; 
+	border: 1px solid black; 
+	float: left;
+}
+
+.circles:hover		
+{
+	background-color: black;
+}
+
+img.image 		
+{
+	width: 100%; 
+	height: 100%; 
+	float: left;
+}
+
+.image			
+{
+	float: left; 
+	width: 100%; 
+	height: 100%; 
+	background-color: white;
+}
