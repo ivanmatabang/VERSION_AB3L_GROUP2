@@ -4,24 +4,27 @@
 	session_start();
 
 	$new = array();
+	$top = array();
 	$best = array();
 	$count = 0;
-	$result2 = mysql_query("SELECT * from orderr where is_delivered='YES' GROUP BY prod_id ORDER BY SUM(quantity) desc");
+	$result2 = mysql_query("SELECT SUM(quantity), prod_id from orderr where is_delivered='YES' GROUP BY prod_id ORDER BY SUM(quantity) desc");
+	//echo "SELECT SUM(quantity) from orderr where is_delivered='YES' GROUP BY prod_id ORDER BY SUM(quantity) desc";
 	$result3 = mysql_query("SELECT * from product ORDER BY id desc");
 	
-	while ($row = mysql_fetch_array($result2, MYSQL_NUM))
+	for ($i = 0; $i < 5; $i++)
 	{
-		array_push($best, $row[0]);
-		$count++;
+		$row = mysql_fetch_array($result2, MYSQL_NUM);
+		array_push($best, $row[1]);
 	}
 
 	for ($i = 0; $i < 5; $i++)
 	{
 		$row = mysql_fetch_array($result3, MYSQL_NUM);
 		array_push($new, $row[0]);
+		//echo $row[0]." ";
 	}
 
-	mysql_close($con);
+	
 ?>
 
 <html>
@@ -105,7 +108,7 @@
 				else
 				{
 					echo "<ul id = 'accountline'>
-						<li id = 'currentpage'>View Account</li>
+						<li id = 'currentpage'><a class = 'link' href = 'account.php'>View Account</a></li>
 						<li><a class = 'link' href = 'editaccount.php'>Edit Account</a></li>
 						<li id = 'del'>Delete Account</li>
 						<li><a class = 'link' href = 'process.php?out=1'>Log out</a></li>
@@ -140,11 +143,11 @@
 				<div id = 'topbest'>Bestsellers</div>
 				<ul id = 'downbest'>
 					<?php
-						for ($i = 0; $i < $count; $i++)
+						for ($i = 0; $i < 5; $i++)
 						{
-							echo "<li><a href = 'viewproduct.php?item=".$i."'>
-								<img class = 'prodimg' src = 'IMAGES/prod".($i+1).".png'/>
-							</a></li>";
+							$resultbest = mysql_query("SELECT * from product where id=".$best[$i]);
+							$rowbest = mysql_fetch_array($resultbest);
+							echo "<li><img class = 'prodimg' src = 'IMAGES/product/".$rowbest[2]."'/></li>";
 						}
 					?>
 				</ul>
@@ -155,7 +158,11 @@
 				<ul id = 'downnew'>
 					
 					<?php
-						for ($i = 0; $i < 5; $i++) echo "<li><img class = 'prodimg' src = 'IMAGES/prod".($i+1).".png'/></li>";
+						for ($i = 0; $i < 5; $i++){
+							$resultbest = mysql_query("SELECT * from product where id=".$new[$i]);
+							$rowbest = mysql_fetch_array($resultbest);
+							echo "<li><img class = 'prodimg' src = 'IMAGES/product/".$rowbest[2]."'/></li>";
+						}						
 					?>
 
 				</ul>
@@ -262,3 +269,7 @@
 	</body>
 
 </html>
+<?php
+mysql_close($con);
+
+?>

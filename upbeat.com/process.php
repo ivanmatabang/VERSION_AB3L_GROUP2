@@ -173,6 +173,7 @@
 		if(strcmp($_SESSION['type'], "customer") == 0)
 		{
 		$result = mysql_query("DELETE from customer where id=".$_SESSION['id']);
+		$result2 = mysql_query("DELETE from orderr where is_delivered='NO' AND custom_id=".$_SESSION['id']);
 		}
 		else
 		{
@@ -281,8 +282,9 @@ $permitted = array('image/jpeg', 'image/pjpeg', 'image/png', 'image/gif', 'image
 	$fileSize = $_FILES['uploadpic']['size'];
 	$fileType = $_FILES['uploadpic']['type'];
 
+	//echo $fileName.$_POST['namehide'];
+	//if($fileName == "") $fileName = $_POST['namehide'];
 	echo $fileName;
-
 	// get the file extension 
 	$ext = substr(strrchr($fileName, "."), 1);
 	// generate the random file name
@@ -292,7 +294,7 @@ $permitted = array('image/jpeg', 'image/pjpeg', 'image/png', 'image/gif', 'image
 	$myfile = $randName . '.' . $ext;
 	// save image path
 	$path = UPLOAD_PATH . $myfile;
-
+	if($fileName != ""){
 	if (in_array($fileType, $permitted) && $fileSize > 0 && $fileSize <= MAX_FILE_SIZE) {
 		//store image to the upload directory
 		$result = move_uploaded_file($tmpName, $path);
@@ -304,18 +306,16 @@ $permitted = array('image/jpeg', 'image/pjpeg', 'image/png', 'image/gif', 'image
 		$result = mysql_query("UPDATE product SET code='".$_POST['edcode']."', image='".$myfile."', description='".$_POST['eddesc']."', gender_type='".$_POST['edgender']."', shirt_type='".$_POST['edshirt']."' where id=".$_GET['id']);
 		}
 	} else {
+		if(!in_array($fileType, $permitted)) echo "a";
+		else if($fileSize <= 0) echo "b";
+		else echo "c";
 		echo 'error upload file';
 	}
-
-
-
-
-
-
-
-		
-	
-
+	}
+	else
+	{
+		$result = mysql_query("UPDATE product SET code='".$_POST['edcode']."', image='".$_POST['namehide']."', description='".$_POST['eddesc']."', gender_type='".$_POST['edgender']."', shirt_type='".$_POST['edshirt']."' where id=".$_GET['id']);	
+	}
 		$id = $_GET['id'];
 		$result = mysql_query("DELETE from product_size where prod_id=".$id);
 
@@ -341,7 +341,7 @@ $permitted = array('image/jpeg', 'image/pjpeg', 'image/png', 'image/gif', 'image
 	 	} 
 
 		mysql_close($con);
-		header("Location:collections.php?all=1");
+		header("Location:store.php?cat=all&start=0&page=1");
 	}
 
 	if(isset($_GET['delcus']))

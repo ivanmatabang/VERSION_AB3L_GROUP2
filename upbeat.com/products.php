@@ -10,8 +10,8 @@
 	$db = mysql_select_db("upbeat", $con);
 	if (!$db)	die('Could not connect: ' . mysql_error());
 
-	$menprodarray = mysql_query("SELECT COUNT(id) from product where gender_type = 'MALE'");
-	$womenprodarray = mysql_query("SELECT COUNT(id) from product where gender_type = 'FEMALE'");
+	$menprodarray = mysql_query("SELECT COUNT(id) from product where gender_type = 'Male'");
+	$womenprodarray = mysql_query("SELECT COUNT(id) from product where gender_type = 'Female'");
 	$productsarray = mysql_query("SELECT COUNT(id) from product");
 	$customerarray = mysql_query("SELECT COUNT(id) from customer");
 	$ordersarray = mysql_query("SELECT COUNT(id) from orderr where is_delivered = 'NO'");

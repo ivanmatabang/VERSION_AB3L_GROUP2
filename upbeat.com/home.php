@@ -46,7 +46,7 @@
 
 							if(isset($_SESSION['type']))
 							{
-								if(strcmp($_SESSION['type'], "admin") == 0)
+								if(strcmp($_SESSION['type'], "administrator") == 0)
 									echo "<a class = 'link' href = 'admin.php'>Home</a>";
 								else echo "<a class = 'link' href = 'home.php'>Home</a>";
 							}

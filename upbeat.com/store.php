@@ -54,6 +54,7 @@
 	}
 	else if (isset($_GET['search'])) 
 	{
+		//echo "WAAAAH";
 		$token = strtok($_GET['search'], " ");
 		while ($token != false)
 	 	{
@@ -69,14 +70,16 @@
 			$result = mysql_query("SELECT * from product_key where prod_id=".$row[0]);
 			while($row1 = mysql_fetch_array($result, MYSQL_NUM))
 			{
-				//ssecho $row1[1];
+				//echo $key;
 				for($i=0;$i<$key;$i++)
 				{
 					if(strcmp($keyarray[$i], $row1[1]) == 0)
 					{
-						//echo "HA";
+						
 						array_push($searcharray, $row[0]);
+
 						$totalsearchproduct++;
+
 						goto end2;
 					}
 				}
@@ -87,12 +90,12 @@
 		else $searchpages = ($totalsearchproduct/4)%(($totalsearchproduct/4)+1)+1;
 	}
 
-	echo $searchpages;
+	//echo $searchpages;
 
 	$itemarr = array();
 	if (strcmp($category, "all") == 0) $prodlist = mysql_query("SELECT * from product");
-	else if (strcmp($category, "men") == 0) $prodlist = mysql_query("SELECT * from product where gender_type = 'MALE'");
-	else if (strcmp($category, "women") == 0) $prodlist = mysql_query("SELECT * from product where gender_type = 'FEMALE'");
+	else if (strcmp($category, "men") == 0) $prodlist = mysql_query("SELECT * from product where gender_type = 'Male'");
+	else if (strcmp($category, "women") == 0) $prodlist = mysql_query("SELECT * from product where gender_type = 'Female'");
 	else if (strcmp($category, "search") == 0) $itemarr = $searcharray;
 
 	if (strcmp($category, "search") != 0){
@@ -183,7 +186,7 @@
 				else
 				{
 					echo "<ul id = 'accountline'>
-						<li id = 'currentpage'>View Account</li>
+						<li id = 'currentpage'><a class = 'link' href = 'account.php'>View Account</a></li>
 						<li><a class = 'link' href = 'editaccount.php'>Edit Account</a></li>
 						<li id = 'del'>Delete Account</li>
 						<li><a class = 'link' href = 'process.php?out=1'>Log out</a></li>
@@ -222,31 +225,47 @@
 
 			<div id = 'productlist'>
 
-				<div id = 'prev'></div>
+				<?php 
+				if(strcmp($_GET['cat'], "search") != 0){
+				if($_GET['page'] != 1 ) {echo "<a href = 'store.php?cat=".$_GET['cat']."&start=".(($_GET['page']-2)*4)."&page=".($_GET['page']-1)."'><div id = 'prev'></div></a>";}
+						else {echo "<div id = 'prev'></div>";}
+					}
+					else{
+						if($_GET['page'] != 1 ) {echo "<a href = 'store.php?cat=".$_GET['cat']."&start=".(($_GET['page']-2)*4)."&page=".($_GET['page']-1)."&search=";
+								for($j=0;$j<$key-1;$j++)
+							{
+								echo $keyarray[$j]."+";
+							}
+							echo $keyarray[$j];
+						echo "'><div id = 'prev'></div></a>";}
+						else {echo "<div id = 'prev'></div>";}
+					}
+
+						?>
 
 				<?php 
 
 					if (strcmp($category, "all") == 0)
 					{
-						if ($spage == $pages) $limit = $first+($products%4);
+						if ($spage == $pages && $products%4 != 0) $limit = $first+($products%4);
 						else $limit = $first+4;
 					}
 					else if (strcmp($category, "men") == 0)
 					{
-						if ($spage == $menpages) $limit = $first+($menproducts%4);
+						if ($spage == $menpages && $menproducts%4 != 0) $limit = $first+($menproducts%4);
 						else $limit = $first+4;
 					}
 					else if (strcmp($category, "women") == 0)
 					{
-						if ($spage == $womenpages) $limit = $first+($womenproducts%4);
+						if ($spage == $womenpages && $womenproducts%4 != 0) $limit = $first+($womenproducts%4);
 						else $limit = $first+4;
 					}
 					else if (strcmp($category, "search") == 0)
 					{
-						if ($spage == $searchpages) $limit = $first+($totalsearchproduct%4);
+						if ($spage == $searchpages && $totalsearchproduct%4 != 0) $limit = $first+($totalsearchproduct%4);
 						else $limit = $first+4;
 					}
-
+				
 					echo "<div id = 'container'>";
 
 						for ($i = $first; $i < $limit; $i++)
@@ -259,7 +278,7 @@
 									<a class = 'link' href = 'viewproduct.php?cat=".$category."&item=".$i."'><img class = 'prodimg2' src = 'IMAGES/product/".$row8[2]."'/></a>
 									<div class = 'prodesc'>
 										".$row8[1]."<br/>
-										<a class = 'link' href = 'viewproduct.php?cat=".$category."item=".$i."'><input type = 'submit' value = 'Add to Cart'/></a>
+										<a class = 'link' href = 'viewproduct.php?cat=".$category."&item=".$i."'><input type = 'submit' value = 'Add to Cart'/></a>
 									</div>
 								</div>
 							";
@@ -267,7 +286,14 @@
 							else{
 							echo "
 								<div class = 'prod'>
-									<img class = 'prodimg2' src = 'IMAGES/product".$row8[2]."'/>
+									<a class = 'link' href = 'viewproduct.php?cat=".$category."&item=".$i."&search=";
+					for($j=0;$j<$key-1;$j++)
+							{
+								echo $keyarray[$j]."+";
+							}
+							echo $keyarray[$j];
+
+									echo "'><img class = 'prodimg2' src = 'IMAGES/product/".$row8[2]."'/></a>
 									<div class = 'prodesc'>
 										".$row8[1]."<br/>
 										<input type = 'submit' value = 'Add to Cart'/>
@@ -279,8 +305,28 @@
 
 					echo "</div>";
 				?>
+	
+				<?php 
+				if (strcmp($category, "men") == 0) $pages = $menpages;
+					else if (strcmp($category, "women") == 0) $pages = $womenpages;
+					else if (strcmp($category, "search") == 0) $pages = $searchpages;
+				if(strcmp($_GET['cat'], "search") != 0){
+				if($_GET['page'] != $pages) {echo "<a href = 'store.php?cat=".$_GET['cat']."&start=".(($_GET['page'])*4)."&page=".($_GET['page']+1)."'><div id = 'next'></div></a>";}
+						else {echo "<div id = 'next'></div>";}
+					}
+					else{
+						if($_GET['page'] != $pages) {echo "<a href = 'store.php?cat=".$_GET['cat']."&start=".(($_GET['page'])*4)."&page=".($_GET['page']+1)."&search=";
+								for($j=0;$j<$key-1;$j++)
+							{
+								echo $keyarray[$j]."+";
+							}
+							echo $keyarray[$j];
+						echo "'><div id = 'next'></div></a>";}
+						else {echo "<div id = 'next'></div>";}
+					}
 
-				<div id = 'next'></div>
+						?>
+
 
 			</div>
 

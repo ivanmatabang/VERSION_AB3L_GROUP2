@@ -9,8 +9,10 @@
 	$productlist = array();
 
 	$result = mysql_query("SELECT * from orderr where is_delivered = 'NO'");
+	$numorders = 0;
 	while ($row = mysql_fetch_array($result, MYSQL_NUM))
 	{
+		$numorders++;
 		array_push($orderlist, $row[0]);
 		array_push($customlist, $row[2]);
 		array_push($productlist, $row[1]);
@@ -119,7 +121,7 @@
 
 					if ($spage == $orderpages) $limit = $first+($orders%10);
 					else $limit = $first+10;
-
+					if($numorders > 0){
 					for ($i = $first; $i < $limit; $i++)
 					{
 						$result1 = mysql_query("SELECT * from orderr where id = ".$orderlist[$i]);
@@ -142,6 +144,11 @@
 								</li>
 							</ul>
 						";
+					}
+					}
+					else
+					{
+						echo "<ul class = 'line'><li>No orders!</li><li></li><li></li><li></li><li></li></ul>";
 					}
 
 					echo "<div id = 'custompage'>";

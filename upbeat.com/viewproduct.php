@@ -3,19 +3,66 @@
 	include("products.php");
 	session_start();
 
+	$searcharray = array();
+	$totalsearchproduct = 0;
+	$searchpages = 0;
+	$keyarray = array();
+	$key = 0;
+
+	if (isset($_GET['search'])) 
+	{
+		//echo "WAAAAH";
+		$token = strtok($_GET['search'], " ");
+		while ($token != false)
+	 	{
+	 		array_push($keyarray, $token);
+	 		//echo $keyarray[$key];
+		  	$key++;
+	 		$token = strtok(" ");
+	 	} 
+		$searchprodarray = mysql_query("SELECT * from product");
+
+		while($row = mysql_fetch_array($searchprodarray, MYSQL_NUM))
+		{
+			$result = mysql_query("SELECT * from product_key where prod_id=".$row[0]);
+			while($row1 = mysql_fetch_array($result, MYSQL_NUM))
+			{
+				//echo $key;
+				for($i=0;$i<$key;$i++)
+				{
+					if(strcmp($keyarray[$i], $row1[1]) == 0)
+					{
+						
+						array_push($searcharray, $row[0]);
+
+						$totalsearchproduct++;
+
+						goto end2;
+					}
+				}
+			}
+			end2:
+		}
+		if ($totalsearchproduct%4 == 0) $searchpages = ($totalsearchproduct/4)%(($totalsearchproduct/4)+1);
+		else $searchpages = ($totalsearchproduct/4)%(($totalsearchproduct/4)+1)+1;
+	}
+
+
 	$cat = $_GET['cat'];
 	$item = $_GET['item'];
 	$itemarr = array();
 	if (strcmp($cat, "all") == 0) $prodlist = mysql_query("SELECT * from product");
 	else if (strcmp($cat, "men") == 0) $prodlist = mysql_query("SELECT * from product where gender_type = 'MALE'");
 	else if (strcmp($cat, "women") == 0) $prodlist = mysql_query("SELECT * from product where gender_type = 'FEMALE'");
+	else if (strcmp($cat, "search") == 0) $itemarr = $searcharray;
 
-	while ($curritem = mysql_fetch_array($prodlist, MYSQL_NUM)) array_push($itemarr, $curritem[0]);
+if (strcmp($cat, "search") != 0) {
+	while ($curritem = mysql_fetch_array($prodlist, MYSQL_NUM)) array_push($itemarr, $curritem[0]);}
 	$result = mysql_query("select * from product where id = ".$itemarr[$item]);
 	$row = mysql_fetch_array($result);
+	$resultsizes = mysql_query("select * from product_size where prod_id = ".$itemarr[$item]);
 		
 
-	mysql_close($con);
 ?>
 
 <html>
@@ -23,7 +70,7 @@
 	<head>
 		<title>UPBeat</title>
 		<link rel = "stylesheet" type = "text/css" href = "CSS/local.css">
-		<link rel = "stylesheet" type = "text/css" href = "CSS/product.css">
+		<link rel = "stylesheet" type = "text/css" href = "CSS/view.css">
 		<script type = "text/javascript" src = "SCRIPTS/jquery.js"></script>
 		<script type = "text/javascript" src = "SCRIPTS/validate.js"></script>
 	</head>
@@ -135,7 +182,7 @@
 
 					if (strcmp($cat,"men") == 0) $products = $menproducts;
 					else if (strcmp($cat,"women") == 0) $products = $womenproducts;
-
+					else if (strcmp($cat,"search") == 0) $products = $totalsearchproduct;
 					if ($item != 0) $left = $item - 1;
 					else $left = 0;
 					if ($item != ($products-1)) $right = $item + 1;
@@ -144,18 +191,37 @@
 					$row1 = mysql_fetch_array($result);
 					$result2 = mysql_query("select * from product where id =".$itemarr[$right]);
 					$row2 = mysql_fetch_array($result);
-	
+					
+					
 					echo "
 						<div id = 'prevpic'>
-							<a href = 'viewproduct.php?cat=".$cat."&item=".$left."'><img class = 'prodimg' src = 'IMAGES/".$row1[2]."'/></a>
+							<a href = 'viewproduct.php?cat=".$cat."&item=".$left;
+							if($_GET['cat'] == "search"){
+							echo "&search=";
+								for($j=0;$j<$key-1;$j++)
+							{
+								echo $keyarray[$j]."+";
+							}
+							echo $keyarray[$j];
+						}
+							echo "'><img class = 'prodimg' src = 'IMAGES/prev.png' height='25px' width ='25px'/></a>
 						</div>
 						
 						<div id = 'current'>
-							<a href = 'viewproduct.php?cat=".$cat."&item=".$item."'><img class = 'prodimg' src = 'IMAGES/".$row[2]."'/></a>
+							<a href = 'viewproduct.php?cat=".$cat."&item=".$item."'><img class = 'prodimg' src = 'IMAGES/product/".$row[2]."'/></a>
 						</div>
 						
 						<div id = 'nextpic'>
-							<a href = 'viewproduct.php?cat=".$cat."&item=".$right."'><img class = 'prodimg' src = 'IMAGES/".$row2[2]."'/></a>
+							<a href = 'viewproduct.php?cat=".$cat."&item=".$right;
+							if($_GET['cat'] == "search"){
+							echo "&search=";
+								for($j=0;$j<$key-1;$j++)
+							{
+								echo $keyarray[$j]."+";
+							}
+							echo $keyarray[$j];
+						}
+							echo "'><img class = 'prodimg' src = 'IMAGES/next.png' height='25px' width='25px'/></a>
 						</div>
 				</div>
 
@@ -164,8 +230,13 @@
 					<div id = 'upper'>
 						Product Name: ".$row[1]."<br/>
 						Product Description: ".$row[3]."<br/>
-						Gender Type: ".$row[4]."<br/>";
+						Gender Type: ".$row[4]."<br/>
+						Product Type: ".$row[5]."<br/>
+						Available Sizes: <br/>";
+						while($rowsizes = mysql_fetch_array($resultsizes, MYSQL_NUM)){
+							echo "Size: ".$rowsizes[1]." - Price: PHP ".$rowsizes[2]."<br/>";
 
+						}
 					echo "</div>";
 
 					if (isset($_SESSION['type']))
@@ -178,12 +249,8 @@
 
 										<input type = 'text' name = 'quantity' value = '1' size = '5'/>
 										<select name = 'productsize'>";
-
-											$result = mysql_query("select * from product where id=".$item);
-											$row = mysql_fetch_array($result);
-											$result2 = mysql_query("select * from product_size where prod_id = ".$row[0]);
-
-											while($row2 = mysql_fetch_array($result2, MYSQL_NUM))
+											$resultsizes1 = mysql_query("select * from product_size where prod_id = ".$itemarr[$item]);
+											while($row2 = mysql_fetch_array($resultsizes1, MYSQL_NUM))
 											{
 												echo "<option value = '".$row2[1]."'>".$row2[1]."</option>";
 											}
@@ -284,3 +351,6 @@
 	</body>
 
 </html>
+<?php
+	mysql_close($con);
+?>

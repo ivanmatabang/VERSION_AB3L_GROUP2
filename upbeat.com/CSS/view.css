@@ -1,0 +1,65 @@
+#maincontent
+{ float: left; width: 100%; height: 600px;}
+
+#prodleft
+{ float: left; margin-top: 50px; margin-left: 4%; width: 60%; height: 510px; }
+
+#prodesc { float: left; margin-top: 50px; margin-left: 2%; width: 26%; padding-top: 20px; padding-left: 2%; padding-right: 2%; height: 430px; text-align: justify; 
+	border-radius: 10px;
+	box-shadow: 1px 5px 10px 1px black;
+	border: 2px solid black;
+	background-color: white;
+}
+
+#prevpic, #nextpic
+{
+	float: left;
+	width: 29%;
+	height: 275px;
+	opacity: 0.65;
+	margin-top: 80px;
+	background-color: black;
+}
+
+#current
+{
+	float: left;
+	width: 40%;
+	height: 450px;
+	border-radius: 10px;
+	border: 2px solid black;
+	background-color: white;
+	box-shadow: 1px 5px 10px 1px black;
+}
+
+img.prodimg
+{
+	width: 100%;
+	height: 100%;
+}
+
+#upper
+{
+	width: 100%;
+	height: 370px;
+}
+
+#lower
+{
+	text-align: center;
+	width: 100%;
+	height: 30px;
+}
+
+#accountdiv		{float: left; margin-left: 5%; overflow: hidden; margin-top: 50px; background-color: white; width: 89%; height: 450px; border: 5px solid maroon; box-shadow: 1px 5px 10px 1px black;}
+#viewdiv			{float: left; width: 100%; height: 450px; padding-top: 0px; padding: 0px;}
+table.account		{margin-top: 0px;}
+td				{width: 400px; font-size: 80%; height: 25px;}
+td.tdcustom		{padding-top: 5px; font-size: 100%;  padding-left: 5px; height: 35px; color: red; border-radius: 5px; border: 2px solid black;}
+td.tdcenter		{text-align: center;}
+td.inputd			{margin: 0%; font-size: 100%;}
+.inputxt			{width: 410px; padding-left: 5px; height: 35px; border: 2px solid black; border-radius: 5px; font-size: 100%; color: red;}
+#maincontentedit	{float: left; width: 100%; height: 800px;}
+#accountdivedit		{float: left; margin-left: 5%; overflow: hidden; margin-top: 50px; background-color: white; width: 89%; height: 700px; border: 5px solid maroon; box-shadow: 1px 5px 10px 1px black;}
+#editdiv			{float: left; width: 100%; height: 700px;}
+#proddiv			{margin: auto; padding: 0px; padding-left: 20px; padding-top: 0px;  float: left; margin-left: 5%; overflow: hidden; margin-top: 20px; margin-bottom: 20px; background-color: white; width: 89%; height: 450px; border: 5px solid maroon; box-shadow: 1px 5px 10px 1px black;}

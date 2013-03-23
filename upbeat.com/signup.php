@@ -36,7 +36,7 @@
 					</li>
 
 					<li>Cart</li>
-					<li><a class = 'link' href = 'store.php?start=0&page=1'>Store</a></li>
+					<li><a class = 'link' href = 'store.php?cat=all&start=0&page=1'>Store</a></li>
 					<li><a class = 'link' href = 'collections.php?start=0&page=1'>Collections</a></li>
 
 					<li>

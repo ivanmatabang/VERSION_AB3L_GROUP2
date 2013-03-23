@@ -221,6 +221,7 @@
 							<td>Image:</td>
 
 							<td><input src='<?php echo "C:/wamp/www/upbeat.com/IMAGES/product/".$row[2]; ?>' type = 'file' name = 'uploadpic'  ></td>
+							<td><input type = 'hidden' name = 'namehide' value ='<?php echo $row[2]; ?>'/></td>
 						</tr>
 						<br />
 

@@ -71,17 +71,7 @@
 			<div id = 'logo'></div>
 		</div>
 
-		<div id = 'submenu'>
 
-			<ul id = 'adminaccount'>
-				<li><a class = 'link' href = 'addadmin.php'>Add Administrator</a></li>
-				<li id = 'addprod'>Add Product</li>
-				<li><a class = 'link' href = 'viewcustomers.php?start=0&page=1'>View Customers</a></li>
-				<li><a class = 'link' href = 'vieworders.php?start=0&page=1'>View Orders</a></li>
-				<li>View Inventory</li>
-			</ul>
-
-		</div>
 
 		<div id = 'adsubmenu'>
 
